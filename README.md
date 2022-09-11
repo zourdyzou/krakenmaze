@@ -1,4 +1,4 @@
-<img src='https://socialify.git.ci/zourdyzou/minesweeper/image?description=1&descriptionEditable=I%20am%20learning%20some%20advanced%20stuff%20with%20React.js%20and%20TypeScript.%20It%27s%20entertaining%20to%20rewind%20some%20of%20the%20knowledge.&font=Source%20Code%20Pro&issues=1&language=1&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark' />
+<img src='https://socialify.git.ci/zourdyzou/krakenmaze/image?description=1&font=Source%20Code%20Pro&forks=1&language=1&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark' />
 
 ## TODO: some of the things that needs to be working on.
 
