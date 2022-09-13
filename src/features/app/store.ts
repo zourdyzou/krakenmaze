@@ -1,12 +1,16 @@
 import themeReducer from "@features/theme-slice";
 import { Action, ThunkAction, configureStore } from "@reduxjs/toolkit";
 
+import coinsReducer from "../coins/coins-slice";
+import coinsMarketChartListReducer from "../coins/marketChartList-slice";
 import counterReducer from "../counter/counter-slice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     theme: themeReducer,
+    coins: coinsReducer,
+    coinsMarketChartList: coinsMarketChartListReducer,
   },
 });
 

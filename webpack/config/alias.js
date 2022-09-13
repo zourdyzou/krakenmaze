@@ -13,4 +13,5 @@ export const aliasItems = {
   "@components": join(rootDir, "/src/components"),
   "@assets": join(rootDir, "/src/assets"),
   "@features": join(rootDir, "/src/features"),
+  "@common": join(rootDir, "/src/common"),
 };

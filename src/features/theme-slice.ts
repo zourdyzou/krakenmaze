@@ -7,7 +7,7 @@ interface Theme {
 
 const initialState: Theme = { darkMode: true };
 
-const selectTheme: (state: RootState) => Theme = (state: RootState) => state.theme;
+export const selectTheme: (state: RootState) => Theme = (state: RootState) => state.theme;
 
 const themeSlice: Slice<Theme, { toggle: (state: Theme) => void }, "theme"> = createSlice({
   name: "theme",

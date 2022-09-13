@@ -21,7 +21,8 @@
       "@styles/*": ["src/styles/*"],
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
-      "@features/*": ["src/features/*"]
+      "@features/*": ["src/features/*"],
+      "@common/*": ["src/common/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
