@@ -7,8 +7,9 @@ interface Props {
   height?: number;
   style?: CSSProperties;
   iconSource?: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
+  [key: string]: any;
 }
 
-export const Icon: React.FunctionComponent<Props> = ({ iconSource: IconComponent, ...restProps }) => {
+export const IconComponent: React.FunctionComponent<Props> = ({ iconSource: IconComponent, ...restProps }) => {
   return IconComponent ? <IconComponent {...restProps} /> : null;
 };

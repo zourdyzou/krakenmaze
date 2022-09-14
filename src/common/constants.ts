@@ -11,3 +11,6 @@ export const API_CONFIG: AxiosRequestConfig = {
     "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
   },
 };
+
+export const drawerWidth = 260;
+export const appBarHeight = 88;
