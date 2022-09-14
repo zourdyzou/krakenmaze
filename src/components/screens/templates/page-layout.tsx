@@ -28,5 +28,20 @@ interface Props {
 export const PageLayout: React.FunctionComponent<Props> = ({ navItems }) => {
   const classes = useStyles();
 
-  return <div className={classes.rootWrapper}>adwhdoh</div>;
+  return (
+    <div className={classes.rootWrapper}>
+      <ApplicationBar />
+      <SidebarDrawer navItems={navItems} />
+      <main className={classes.content}>
+        <Switch>
+          {navItems
+            .slice()
+            .sort((a, b) => b.index - a.index)
+            .map((item: NavItem) => {
+              return <Route key={item.path} path={item.path} render={() => item.page} />;
+            })}
+        </Switch>
+      </main>
+    </div>
+  );
 };
