@@ -1,8 +1,8 @@
 import {
   CoinMarketChart as CoinMarketChartInterface,
   CoinMarketChartList as CoinMarketChartListInterface,
-} from "@src/models/api/coin-market-chart.model";
-import { GenericState as GenericStateInterface } from "@src/models/common/generic-state";
+} from "@/src/models/api/coin-market-chart.model";
+import { GenericState as GenericStateInterface } from "@/src/models/common/generic-state";
 
 import { Coin as CoinInterface } from "./api/coin.model";
 

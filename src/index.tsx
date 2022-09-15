@@ -1,11 +1,9 @@
-import "@styles/styles.scss";
-import "normalize.css/normalize.css";
-
-import { App } from "@components/app";
-import { store } from "@features/app/store";
 import React from "react";
 import ReactDom from "react-dom";
 import { Provider } from "react-redux";
+
+import { store } from "@/components/app/store";
+import { App } from "@/components/container";
 
 ReactDom.render(
   <React.StrictMode>

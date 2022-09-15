@@ -1,10 +1,12 @@
-import { useAppSelector } from "@features/app/hooks";
-import { selectCoinMarketChartList } from "@features/coins/marketChartList-slice";
+// @ts-nocheck
+import React from "react";
 import { useTheme } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
-import { Coin, CoinMarketChart } from "@src/models";
-import React from "react";
 import { Area, AreaChart, YAxis } from "recharts";
+
+import { selectCoinMarketChartList } from "@/features/marketChartSlice";
+import { useAppSelector } from "@/hooks/*";
+import { Coin, CoinMarketChart } from "@/src/models";
 
 interface Props {
   coin: Coin;
@@ -12,8 +14,8 @@ interface Props {
 }
 
 export const SmallCoinChart: React.FunctionComponent<Props> = ({ coin, dataKey }) => {
-  const theme = useTheme();
   const coinMarketChartList = useAppSelector(selectCoinMarketChartList);
+  const theme = useTheme();
   const gain = coin.priceChangePercentage24H > 0;
 
   const formatRawData = () => {

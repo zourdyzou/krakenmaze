@@ -15,7 +15,7 @@ const path = require("path");
 
 module.exports = {
   parser: "@typescript-eslint/parser", // Specifies the ESLint parser
-  plugins: ["@typescript-eslint", "react"],
+  plugins: ["@typescript-eslint", "react", "simple-import-sort"],
   env: {
     browser: true,
     jest: true,
@@ -46,6 +46,8 @@ module.exports = {
     "react/no-deprecated": "off",
     "react/no-string-refs": "off",
     "react/require-render-return": "off",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
 
     "react/jsx-filename-extension": [
       "warn",
@@ -60,4 +62,31 @@ module.exports = {
       version: "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
     },
   },
+  overrides: [
+    // override "simple-import-sort" config
+    {
+      files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      rules: {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            groups: [
+              // Packages `react` related packages come first.
+              ["^react", "^@?\\w"],
+              // Internal packages.
+              ["^(@|components)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Parent imports. Put `..` last.
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports.
+              ["^.+\\.?(css)$"],
+            ],
+          },
+        ],
+      },
+    },
+  ],
 };

@@ -1,9 +1,10 @@
-import { appBarHeight, drawerWidth } from "@common/constants";
-import { NavItem } from "@components/screens/atoms/navigation-list-item";
-import { DrawerItems } from "@components/screens/molecules/drawer-items";
-import { Drawer as MuiDrawer, Toolbar } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
 import React from "react";
+import { Drawer as MuiDrawer, Toolbar } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+import { appBarHeight, drawerWidth } from "@/common/constants";
+import { NavItem } from "@/components/screens/atoms/navigation-list-item";
+import { DrawerItems } from "@/components/screens/molecules/drawer-items";
 
 const useStyles = makeStyles((_theme: Theme) => ({
   drawer: {

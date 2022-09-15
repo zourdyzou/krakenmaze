@@ -1,10 +1,12 @@
-import { API_CONFIG as config } from "@common/constants";
-import { endpoints as API } from "@common/endpoints";
-import { toCamelCase } from "@common/helpers/case-transformer";
-import { RootState } from "@features/app/store";
-import { Slice, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CoinMarketChartList, GenericState } from "@src/models";
+import { createAsyncThunk, createSlice, Slice } from "@reduxjs/toolkit";
 import axios from "axios";
+
+import { API_CONFIG as config } from "@/common/constants";
+import { endpoints as API } from "@/common/endpoints";
+import { toCamelCase } from "@/common/helpers/case-transformer";
+import { RootState } from "@/components/app/store";
+
+import { CoinMarketChartList, GenericState } from "../models";
 
 const initialState: GenericState<CoinMarketChartList> = {
   value: {},

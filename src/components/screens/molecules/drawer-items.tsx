@@ -1,7 +1,8 @@
-import { NavItem, NavigationListItem } from "@components/screens/atoms/navigation-list-item";
-import { List, ListSubheader } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
 import React from "react";
+import { List, ListSubheader } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+import { NavigationListItem, NavItem } from "@/components/screens/atoms/navigation-list-item";
 
 const useStyles = makeStyles((theme: Theme) => ({
   navItemsWrapper: {

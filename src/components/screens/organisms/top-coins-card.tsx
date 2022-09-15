@@ -1,12 +1,13 @@
-import { getTodayDate } from "@common/helpers/date-handler";
-import { CoinItem } from "@components/screens/molecules/coin-item";
-import { useAppDispatch, useAppSelector } from "@features/app/hooks";
-import { fetchCoins, selectCoins } from "@features/coins/coins-slice";
-import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@features/coins/marketChartList-slice";
-import { Card, CardHeader, Divider, List } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-import { Coin } from "@src/models";
 import React, { Fragment, useEffect } from "react";
+import { Card, CardHeader, Divider, List } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+import { getTodayDate } from "@/common/helpers/date-handler";
+import { CoinItem } from "@/components/screens/molecules/coin-item";
+import { fetchCoins, selectCoins } from "@/features/coinsSlice";
+import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@/features/marketChartSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/*";
+import { Coin } from "@/src/models";
 
 const useStyles = makeStyles((theme: Theme) => ({
   card: {

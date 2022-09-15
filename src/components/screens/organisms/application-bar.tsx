@@ -1,9 +1,10 @@
-import Logo from "@assets/images/logo.svg";
-import { appBarHeight, drawerWidth } from "@common/constants";
-import { IconComponent } from "@components/icons";
-import { AppBar as MuiAppBar, Toolbar, Typography } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
 import React from "react";
+import { AppBar as MuiAppBar, Toolbar, Typography } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+import Logo from "@/assets/images/logo.svg";
+import { appBarHeight, drawerWidth } from "@/common/constants";
+import { IconComponent } from "@/components/icons";
 
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {

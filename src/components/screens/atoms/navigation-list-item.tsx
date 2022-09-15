@@ -1,7 +1,7 @@
-import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
 import React from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
   navListItem: {

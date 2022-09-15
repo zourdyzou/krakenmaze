@@ -5,7 +5,7 @@
  *       $: 'jquery',
  *  }
  */
-import {ProvidePlugin} from 'webpack';
+import { ProvidePlugin } from "webpack";
 
 const config = {};
 

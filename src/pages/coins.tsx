@@ -1,7 +1,8 @@
-import { TopCoinsCard } from "@components/screens/organisms/top-coins-card";
-import { Grid } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
 import React from "react";
+import { Grid } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+import { TopCoinsCard } from "@/components/screens/organisms/top-coins-card";
 
 const useStyles = makeStyles((theme: Theme) => ({
   rootWrapper: {

@@ -1,8 +1,10 @@
-import { SmallCoinChart } from "@components/screens/atoms/small-coin-chart";
-import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from "@material-ui/core";
-import { Theme, makeStyles } from "@material-ui/core/styles";
-import { Coin } from "@src/models";
 import React from "react";
+import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
+
+import { Coin } from "@/src/models";
+
+import { SmallCoinChart } from "../atoms/small-coin-chart";
 
 const useStyles = makeStyles<Theme, Coin>((theme: Theme) => ({
   ranking: {

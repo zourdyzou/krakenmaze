@@ -16,13 +16,14 @@
     "rootDir": "./",
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "paths": {
-      "@src/*": ["src/*"],
-      "@images/*": ["src/images/*"],
-      "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@features/*": ["src/features/*"],
-      "@common/*": ["src/common/*"]
+      "@/src/*": ["src/*"],
+      "@/images/*": ["src/images/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/components/*": ["src/components/*"],
+      "@/assets/*": ["src/assets/*"],
+      "@/features/*": ["src/features/*"],
+      "@/common/*": ["src/common/*"],
+      "@/hooks/*": ["src/components/app/hooks"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
