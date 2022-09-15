@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import { useTheme } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
@@ -22,7 +21,7 @@ export const SmallCoinChart: React.FunctionComponent<Props> = ({ coin, dataKey }
     const formattedData = [];
 
     for (const array of coinMarketChartList.value[coin.id][dataKey]) {
-      formattedData.push({ date: array[0], datakey: array[1] });
+      formattedData.push({ date: array[0], dataKey: array[1] });
     }
 
     return formattedData;
