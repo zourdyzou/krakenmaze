@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect } from "react";
-import { Card, CardHeader, Divider, List } from "@material-ui/core";
+import { CardHeader, Divider, List } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { getTodayDate } from "@/common/helpers/date-handler";
+import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { CoinItem } from "@/components/screens/molecules/coin-item";
 import { fetchCoins, selectCoins } from "@/features/coinsSlice";
 import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@/features/marketChartSlice";
@@ -10,16 +11,6 @@ import { useAppDispatch, useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  card: {
-    display: "flex",
-    flexFlow: "column",
-    backgroundColor: theme.palette.card.main,
-    height: "100%",
-    borderRadius: 12,
-    "& ::-webkit-scrollbar": {
-      display: "none",
-    },
-  },
   coinList: {
     overflow: "scroll",
     paddingBottom: 8,
@@ -46,7 +37,7 @@ export const TopCoinsCard: React.FunctionComponent = () => {
   }, [dispatch, coins.value, coinMarketChartLists.value, coinMarketChartLists.status]);
 
   return (
-    <Card className={classes.card}>
+    <CardLayout>
       <CardHeader
         title="Top Coins"
         subheader={getTodayDate()}
@@ -70,6 +61,6 @@ export const TopCoinsCard: React.FunctionComponent = () => {
           </Fragment>
         )}
       </List>
-    </Card>
+    </CardLayout>
   );
 };
