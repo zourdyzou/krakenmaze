@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.palette.background.paper,
     marginTop: appBarHeight,
     marginRight: 20,
+    padding: "24px 24px 0 24px",
     borderRadius: 12,
   },
 }));
