@@ -22,7 +22,7 @@ export const fetchCoinMarketChartList = createAsyncThunk("coinMarketChartList", 
   for (let i = 0; i < coinIdList.length; i++) {
     const response = await axios.request({
       ...config,
-      url: API.coinMarketChart(coinIdList[i]),
+      url: API.coinMarketChart(coinIdList[i], 1),
       cancelToken: canceler.token,
     });
 
