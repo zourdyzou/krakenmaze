@@ -1,5 +1,5 @@
 import React from "react";
-import { createMuiTheme, CssBaseline, Theme, ThemeOptions, ThemeProvider } from "@material-ui/core";
+import { createTheme, CssBaseline, Theme, ThemeOptions, ThemeProvider } from "@material-ui/core";
 
 import Gilroy from "@/assets/fonts/Gilroy-ExtraBold.woff";
 import { selectTheme } from "@/features/themeSlice";
@@ -45,7 +45,7 @@ export const App: React.FunctionComponent = () => {
     },
   };
 
-  const dark: Theme = createMuiTheme({
+  const dark: Theme = createTheme({
     palette: {
       type: "dark",
       primary: {
@@ -69,7 +69,7 @@ export const App: React.FunctionComponent = () => {
     ...common,
   });
 
-  const light: Theme = createMuiTheme({
+  const light: Theme = createTheme({
     palette: {
       type: "light",
       primary: {
