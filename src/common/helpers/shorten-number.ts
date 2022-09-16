@@ -26,5 +26,5 @@ export const shortenNumber = (num: number) => {
     return format(num / limits.THOUSAND, "K");
   }
 
-  return num.toFixed(0);
+  return Number(num.toFixed(0));
 };

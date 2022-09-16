@@ -7,6 +7,11 @@ import { selectCoinMarketChartList } from "@/features/marketChartSlice";
 import { useAppSelector } from "@/hooks/*";
 import { Coin, CoinMarketChart } from "@/src/models";
 
+interface ChartDataFormat {
+  date: number;
+  value: number;
+}
+
 interface Props {
   coin: Coin;
   dataKey: keyof CoinMarketChart;

@@ -51,4 +51,7 @@ const dominanceChartListSlice: Slice<GenericState<CoinMarketChartList>, {}, "dom
   },
 });
 
+export const selectDominanceChartList: (state: RootState) => GenericState<CoinMarketChartList> = (state: RootState) =>
+  state.dominanceChartList;
+
 export default dominanceChartListSlice.reducer;
