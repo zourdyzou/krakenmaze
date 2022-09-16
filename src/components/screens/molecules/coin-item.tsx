@@ -15,11 +15,11 @@ const useStyles = makeStyles<Theme, Coin>((theme: Theme) => ({
     minWidth: 46,
   },
   avatarSmall: {
-    width: theme.spacing(4),
     height: theme.spacing(4),
+    width: theme.spacing(4),
   },
   coinLabelText: {
-    width: 100,
+    width: 80,
   },
   coinPrice: (_props) => ({
     width: 80,
