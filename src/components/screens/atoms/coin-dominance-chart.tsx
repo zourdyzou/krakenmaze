@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
@@ -20,8 +21,16 @@ interface Props {
   dataKey: keyof CoinMarketChart;
 }
 
+const useStyles = makeStyles((theme: Theme) => ({
+  chartSkeleton: {
+    margin: "0 16px",
+    transform: "scale(1, 0.8)",
+  },
+}));
+
 export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, dataKey }) => {
   const theme = useTheme();
+  const classes = useStyles();
   const dominanceChartList = useAppSelector(selectDominanceChartList);
 
   const top1 = coinList[0];
@@ -44,8 +53,14 @@ export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, d
 
   return (
     <>
-      {!dominanceChartList.value[top1.id] || !dominanceChartList.value[top2.id] ? (
-        <Skeleton animation="wave" height="100%" id="titleSkeleton" style={{ margin: "0 20px" }} />
+      {coinList.length !== 2 || !dominanceChartList.value[top1.id] || !dominanceChartList.value[top2.id] ? (
+        <Skeleton
+          animation="wave"
+          height="100%"
+          id="titleSkeleton"
+          style={{ margin: "0 20px" }}
+          className={classes.chartSkeleton}
+        />
       ) : (
         <ResponsiveContainer height="100%" width="100%">
           <AreaChart
@@ -65,8 +80,8 @@ export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, d
             <XAxis dataKey="date" tickFormatter={(tick) => convertTimestamp(tick)} />
             <YAxis tickFormatter={(tick) => shortenNumber(tick) as string} />
             <Tooltip
-              formatter={(value: number, name: string) => [
-                shortenNumber(value),
+              formatter={(value: number, name: string): any => [
+                `US$${shortenNumber(value)}`,
                 name === "top1" ? top1.name : top2.name,
               ]}
             />

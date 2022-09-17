@@ -38,7 +38,7 @@ export const CoinsPage: React.FunctionComponent = () => {
         </Grid>
       </Grid>
 
-      <Grid item lg={4} xl={5}>
+      <Grid item md={4} lg={4} xl={5}>
         &nbsp;
       </Grid>
     </Grid>
