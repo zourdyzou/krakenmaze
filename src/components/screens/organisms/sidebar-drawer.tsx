@@ -25,7 +25,7 @@ const useStyles = makeStyles((_theme: Theme) => ({
 }));
 
 interface Props {
-  navItems?: NavItem[];
+  navItems: NavItem[];
   anchor?: "bottom" | "left" | "right" | "top";
 }
 

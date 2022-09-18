@@ -1,12 +1,13 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { AccountBalanceRounded, DataUsageRounded, TrendingUpRounded } from "@material-ui/icons";
+import { AccountBalanceRounded, DataUsageRounded, People, TrendingUpRounded } from "@material-ui/icons";
 
 import { NavItem } from "@/components/screens/atoms/navigation-list-item";
 import { PageLayout } from "@/components/screens/templates/page-layout";
-import { CoinsPage } from "@/src/pages/coins";
-import { ExchangesPage } from "@/src/pages/exchanges";
-import { TrendsPage } from "@/src/pages/trends";
+import { CoinsPage } from "@/src/pages/analytics/coins";
+import { ExchangesPage } from "@/src/pages/analytics/exchanges";
+import { TrendsPage } from "@/src/pages/analytics/trends";
+import { EventsPage } from "@/src/pages/information/events";
 
 export const MainContainerPage: React.FunctionComponent = () => {
   const pages: NavItem[] = [
@@ -29,6 +30,13 @@ export const MainContainerPage: React.FunctionComponent = () => {
       path: "/exchanges",
       icon: <AccountBalanceRounded />,
       page: <ExchangesPage />,
+      index: 2,
+    },
+    {
+      label: "Events",
+      path: "/events",
+      icon: <People />,
+      page: <EventsPage />,
       index: 2,
     },
   ];
