@@ -1,16 +1,20 @@
 ---
 name: Task
-about: A task that is, most likely, part of an Epic. It will usually be labeled as `task`.
+about: A task that is, most likely, part of an Epic. It will usually be labeled as
+`task`.
+title: "[TASK]"
+labels: task
+assignees: zourdyzou
+
 ---
 
-<!-- User story should be adequately explained -->
-
-## User Story
-
+**User Story**
 As a user, I want to be able to...
 
-## Epic Parent
+**Epic Parent**
+[EPIC: Awesome Epic Title](https://github.com/zourdyzou/krakenmaze/issues/1)
 
-<!-- The link below should link to its Epic Parent. -->
+**API Dependencies**
 
-[Epic: Awesome Epic Title](https://github.com/username/repository-name/issues/1)
+1. /your/api/dependency/1
+2. /your/api/dependency/2
