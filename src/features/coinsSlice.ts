@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, Slice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import { API_CONFIG as config } from "@/common/constants";
-import { endpoints as API } from "@/common/endpoints";
+import { coinGecko as API } from "@/common/endpoints";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
 import { Coin, GenericState } from "@/src/models";
@@ -16,7 +16,7 @@ export const fetchCoins = createAsyncThunk("coins", async () => {
   const canceler = axios.CancelToken.source();
 
   const response = await axios.request({
-    ...config,
+    ...config("coinGecko"),
     url: API.coins,
     cancelToken: canceler.token,
   });

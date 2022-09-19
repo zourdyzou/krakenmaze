@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, Slice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 import { API_CONFIG as config } from "@/common/constants";
-import { endpoints as API } from "@/common/endpoints";
+import { coinGecko as API } from "@/common/endpoints";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
 
@@ -21,7 +21,7 @@ export const fetchCoinMarketChartList = createAsyncThunk("coinMarketChartList", 
 
   for (let i = 0; i < coinIdList.length; i++) {
     const response = await axios.request({
-      ...config,
+      ...config("coinGecko"),
       url: API.coinMarketChart(coinIdList[i], 1),
       cancelToken: canceler.token,
     });

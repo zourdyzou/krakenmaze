@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 250,
   },
 }));
+
 export const DominanceCard: React.FC = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
