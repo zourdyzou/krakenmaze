@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { DominanceCard } from "@/components/screens/organisms/dominance-card";
+import { GasOracleCard } from "@/components/screens/organisms/gas-indicator-card";
 import { TopCoinsCard } from "@/components/screens/organisms/top-coins-card";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -19,17 +20,17 @@ export const CoinsPage: React.FunctionComponent = () => {
 
   return (
     <Grid className={classes.rootWrapper} spacing={3} direction="row" justify="center" alignItems="stretch" container>
-      <Grid item xs={6} md={5} lg={4} xl={3}>
+      <Grid item xs={6} md={6} lg={4} xl={3}>
         <TopCoinsCard />
       </Grid>
 
-      <Grid item xs={6} md={3} lg={4}>
+      <Grid item xs={6} md={6} lg={4}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <DominanceCard />
           </Grid>
           <Grid item xs={12}>
-            &nbsp;
+            <GasOracleCard />
           </Grid>
 
           <Grid item xs={12}>
@@ -38,7 +39,7 @@ export const CoinsPage: React.FunctionComponent = () => {
         </Grid>
       </Grid>
 
-      <Grid item md={4} lg={4} xl={5}>
+      <Grid item lg={4} xl={5}>
         &nbsp;
       </Grid>
     </Grid>
