@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Avatar, CardContent, CardHeader, Grid, TextField } from "@material-ui/core";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { FastForwardRounded, HourglassEmptyRounded, LocalGasStationRounded, ScheduleRounded } from "@material-ui/icons";
@@ -7,7 +7,7 @@ import { Skeleton } from "@material-ui/lab";
 import { GasIndicator } from "@/components/screens/atoms/gas-indicator";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { selectCoins } from "@/features/coinsSlice";
-import { fetchGasOracle, selectGasOracle } from "@/features/gas-oracle-slice";
+import { fetchGasOracle, selectGasOracle, setGasLimit, setSelectedGasFee } from "@/features/gas-oracle-slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";
 
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   conditionalButtonChild: {
     "& .MuiButton-outlined": {
       height: 88,
-      border: `2px solid ${theme.palette.secondary.main}`,
+      border: `2px solid ${theme.palette.secondary.main}80`,
     },
   },
 }));
@@ -54,20 +54,11 @@ export const GasOracleCard: React.FunctionComponent = () => {
     return coin.id === "ethereum";
   });
 
-  const [selectedGasFee, setSelectedGasFee] = useState<string | null>(null);
-  const [gasLimit, setGasLimit] = useState<number>(21000);
-
   useEffect(() => {
     if (gasOracle.value.lastBlock.length === 0 && gasOracle.status === "IDLE") {
       dispatch(fetchGasOracle());
     }
   }, [dispatch, gasOracle.value, gasOracle.status]);
-
-  useEffect(() => {
-    if (gasOracle.value.proposeGasPrice) {
-      setSelectedGasFee(gasOracle.value.proposeGasPrice);
-    }
-  }, [gasOracle.value.proposeGasPrice]);
 
   return (
     <CardLayout>
@@ -75,8 +66,12 @@ export const GasOracleCard: React.FunctionComponent = () => {
         title="ETH Gas Station"
         titleTypographyProps={{ variant: "caption", color: "textSecondary" }}
         subheader={
-          ethereum && selectedGasFee ? (
-            `Fee: US$${Math.round(0.000000001 * ethereum.currentPrice * gasLimit * Number(selectedGasFee) * 100) / 100}`
+          ethereum && gasOracle.selectedGasFee ? (
+            `Fee: US$${
+              Math.round(
+                0.000000001 * ethereum.currentPrice * gasOracle.gasLimit * Number(gasOracle.selectedGasFee) * 100
+              ) / 100
+            }`
           ) : (
             <Skeleton animation="wave" height={24} width={150} />
           )
@@ -92,8 +87,8 @@ export const GasOracleCard: React.FunctionComponent = () => {
             className={classes.gasLimitField}
             label="Gas Limit"
             variant="outlined"
-            defaultValue={gasLimit}
-            onChange={(e) => setGasLimit(Number(e.target.value))}
+            defaultValue={gasOracle.gasLimit}
+            onChange={(e) => dispatch(setGasLimit(Number(e.target.value)))}
             type="number"
           />
         }
@@ -107,8 +102,8 @@ export const GasOracleCard: React.FunctionComponent = () => {
               time="< 30mins"
               icon={<HourglassEmptyRounded />}
               color={theme.palette.error.main}
-              selected={selectedGasFee === gasOracle.value.safeGasPrice}
-              onClick={() => setSelectedGasFee(gasOracle.value.safeGasPrice)}
+              selected={gasOracle.selectedGasFee === gasOracle.value.safeGasPrice}
+              onClick={() => dispatch(setSelectedGasFee(gasOracle.value.safeGasPrice))}
             />
           </Grid>
           <Grid item xs={4}>
@@ -118,8 +113,8 @@ export const GasOracleCard: React.FunctionComponent = () => {
               time="< 5mins"
               icon={<ScheduleRounded />}
               color={theme.palette.warning.main}
-              selected={selectedGasFee === gasOracle.value.proposeGasPrice}
-              onClick={() => setSelectedGasFee(gasOracle.value.proposeGasPrice)}
+              selected={gasOracle.selectedGasFee === gasOracle.value.proposeGasPrice}
+              onClick={() => dispatch(setSelectedGasFee(gasOracle.value.proposeGasPrice))}
             />
           </Grid>
           <Grid item xs={4}>
@@ -129,8 +124,8 @@ export const GasOracleCard: React.FunctionComponent = () => {
               time="< 1min"
               icon={<FastForwardRounded />}
               color={theme.palette.success.main}
-              selected={selectedGasFee === gasOracle.value.fastGasPrice}
-              onClick={() => setSelectedGasFee(gasOracle.value.fastGasPrice)}
+              selected={gasOracle.selectedGasFee === gasOracle.value.fastGasPrice}
+              onClick={() => dispatch(setSelectedGasFee(gasOracle.value.fastGasPrice))}
             />
           </Grid>
         </Grid>

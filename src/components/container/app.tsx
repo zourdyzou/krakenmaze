@@ -2,12 +2,12 @@ import React from "react";
 import { createMuiTheme, CssBaseline, Theme, ThemeOptions, ThemeProvider } from "@material-ui/core";
 
 import Gilroy from "@/assets/fonts/Gilroy-ExtraBold.woff";
-import { selectTheme } from "@/features/themeSlice";
+import { selectAppState } from "@/features/app-state-slice";
 import { useAppSelector } from "@/hooks/*";
 import { MainContainerPage } from "@/src/pages/main";
 
 export const App: React.FunctionComponent = () => {
-  const theme = useAppSelector(selectTheme);
+  const theme = useAppSelector(selectAppState);
 
   // fonts config
   const gilroy = {
@@ -49,7 +49,7 @@ export const App: React.FunctionComponent = () => {
     palette: {
       type: "dark",
       primary: {
-        main: "#913f9e",
+        main: "#7C4DFF",
       },
       secondary: {
         main: "#2196F3",
@@ -69,7 +69,6 @@ export const App: React.FunctionComponent = () => {
     },
     ...common,
   });
-
   const light: Theme = createMuiTheme({
     palette: {
       type: "light",

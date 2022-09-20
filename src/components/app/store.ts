@@ -1,14 +1,14 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 
+import appStateReducer from "@/features/app-state-slice";
 import coinsReducer from "@/features/coinsSlice";
 import dominanceChartListReducer from "@/features/dominance-chart-list-slice";
 import gasOracleSlice from "@/features/gas-oracle-slice";
 import coinsMarketChartListReducer from "@/features/marketChartSlice";
-import themeReducer from "@/features/themeSlice";
 
 export const store = configureStore({
   reducer: {
-    theme: themeReducer,
+    appState: appStateReducer,
     coins: coinsReducer,
     coinsMarketChartList: coinsMarketChartListReducer,
     dominanceChartList: dominanceChartListReducer,

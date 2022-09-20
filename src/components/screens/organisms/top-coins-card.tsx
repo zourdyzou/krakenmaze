@@ -60,7 +60,7 @@ export const TopCoinsCard: React.FunctionComponent = () => {
       />
       <Divider />
       <List dense disablePadding className={classes.coinList}>
-        {coins.status === "LOADING" ? (
+        {coins.value.length === 0 || coins.status === "LOADING" ? (
           <>
             {Array.from(Array(15).keys()).map((index: number) => (
               <Fragment key={index}>
