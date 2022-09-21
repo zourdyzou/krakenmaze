@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
+import { roundDecimals } from "@/common/helpers/round-decimals";
 import { Coin } from "@/src/models";
 
 import { SmallCoinChart } from "../atoms/small-coin-chart";
@@ -59,10 +60,8 @@ export const CoinItem: React.FunctionComponent<Props> = ({ coin }) => {
       <SmallCoinChart coin={coin} dataKey={"prices"} />
       <ListItemText
         className={classes.coinPrice}
-        primary={`US$${Math.round(coin.currentPrice * 1000) / 1000}`}
-        secondary={`${coin.priceChangePercentage24H > 0 ? "+" : ""}${
-          Math.round(coin.priceChangePercentage24H * 10) / 10
-        }%`}
+        primary={`US$${roundDecimals(coin.currentPrice, 3)}`}
+        secondary={`${coin.priceChangePercentage24H > 0 ? "+" : ""}${roundDecimals(coin.priceChangePercentage24H)}%`}
         primaryTypographyProps={{ variant: "subtitle1", noWrap: true }}
         secondaryTypographyProps={{ variant: "subtitle2" }}
       />

@@ -5,6 +5,7 @@ import coinsReducer from "@/features/coinsSlice";
 import dominanceChartListReducer from "@/features/dominance-chart-list-slice";
 import gasOracleSlice from "@/features/gas-oracle-slice";
 import coinsMarketChartListReducer from "@/features/marketChartSlice";
+import trendingCoinsReducer from "@/features/trending-coins-slice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     coinsMarketChartList: coinsMarketChartListReducer,
     dominanceChartList: dominanceChartListReducer,
     gasOracle: gasOracleSlice,
+    trendingCoins: trendingCoinsReducer,
   },
   devTools: true,
 });

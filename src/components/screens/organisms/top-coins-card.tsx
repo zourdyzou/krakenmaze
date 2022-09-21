@@ -71,7 +71,7 @@ export const TopCoinsCard: React.FunctionComponent = () => {
                     <Skeleton animation="wave" height={12} width="40%" />
                   </div>
                 </ListItem>
-                {index < coins.value.length - 1 && <Divider />}
+                {index < 14 && <Divider />}
               </Fragment>
             ))}
           </>

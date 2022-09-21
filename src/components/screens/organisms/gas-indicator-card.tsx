@@ -4,6 +4,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import { LocalGasStationRounded } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 
+import { roundDecimals } from "@/common/helpers/round-decimals";
 import { GasLimitTextField } from "@/components/screens/atoms/gas-limit-text-field";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { GasIndicatorGroup } from "@/components/screens/molecules/gas-indicator-group";
@@ -33,11 +34,11 @@ export const GasOracleCard: React.FunctionComponent = () => {
   });
 
   const calculateTransactionFee = (ethereum: Coin) => {
-    return 0.000000001 * ethereum.currentPrice * gasOracle.gasLimit * Number(gasOracle.selectedGasFee) * 100;
+    return 0.000000001 * ethereum.currentPrice * gasOracle.gasLimit * Number(gasOracle.selectedGasFee);
   };
 
   useEffect(() => {
-    if (gasOracle.value.lastBlock.length === 0 && gasOracle.status === "IDLE") {
+    if (!gasOracle.value.lastBlock && gasOracle.status === "IDLE") {
       dispatch(fetchGasOracle());
     }
   }, [dispatch, gasOracle.value, gasOracle.status]);
@@ -49,7 +50,7 @@ export const GasOracleCard: React.FunctionComponent = () => {
         titleTypographyProps={{ variant: "caption", color: "textSecondary" }}
         subheader={
           ethereum && gasOracle.selectedGasFee ? (
-            `Fee: US$${Math.round(calculateTransactionFee(ethereum)) / 100}`
+            `Fee: US$${roundDecimals(calculateTransactionFee(ethereum))}`
           ) : (
             <Skeleton animation="wave" height={24} width={150} />
           )

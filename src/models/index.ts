@@ -12,3 +12,5 @@ export type GenericState<T> = GenericStateInterface<T>;
 export type Coin = CoinInterface;
 export type CoinMarketChart = CoinMarketChartInterface;
 export type CoinMarketChartList = CoinMarketChartListInterface;
+
+export * from "./api/trending-coin";
