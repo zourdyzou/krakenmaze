@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const DominanceCard: React.FC = () => {
+export const DominanceCard: React.FunctionComponent = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 

@@ -85,7 +85,7 @@ export const ApplicationBar: React.FunctionComponent = () => {
             href="https://github.com/zourdyzou/"
             target="_blank"
             rel="noopener"
-            aria-label="GitHub"
+            aria-label="View on GitHub"
           >
             <GitHub />
           </IconButton>

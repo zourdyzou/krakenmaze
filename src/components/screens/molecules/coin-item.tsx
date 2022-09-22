@@ -28,7 +28,7 @@ const useStyles = makeStyles<Theme, Coin>((theme: Theme) => ({
     paddingRight: 12,
     "& .MuiTypography-subtitle2": {
       color: (coin: Coin) =>
-        coin.priceChangePercentage24H > 0 ? theme.palette.success.main : theme.palette.error.main,
+        coin.priceChangePercentage24H >= 0 ? theme.palette.success.main : theme.palette.error.main,
     },
   }),
 }));

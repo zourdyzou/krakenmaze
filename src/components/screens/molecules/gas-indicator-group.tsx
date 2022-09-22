@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const GasIndicatorGroup: React.FC = () => {
+export const GasIndicatorGroup: React.FunctionComponent = () => {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useAppDispatch();

@@ -47,7 +47,15 @@ interface Props {
   onClick: () => void;
 }
 
-export const GasIndicator: React.FC<Props> = ({ header, price, time, icon, color, selected, onClick }) => {
+export const GasIndicator: React.FunctionComponent<Props> = ({
+  header,
+  price,
+  time,
+  icon,
+  color,
+  selected,
+  onClick,
+}) => {
   const classes = useStyles({ color });
 
   return (

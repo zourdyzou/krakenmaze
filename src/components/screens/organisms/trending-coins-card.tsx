@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const TrendingCoinsCard: React.FC = () => {
+export const TrendingCoinsCard: React.FunctionComponent = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 

@@ -22,7 +22,7 @@ interface Props {
   count: number;
 }
 
-export const ListItemSkeleton: React.FC<Props> = ({ count }) => {
+export const ListItemSkeleton: React.FunctionComponent<Props> = ({ count }) => {
   const classes = useStyles();
   const theme = useTheme();
 

@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const GasLimitTextField: React.FC = () => {
+export const GasLimitTextField: React.FunctionComponent = () => {
   const classes = useStyles();
   const dispatch = useAppDispatch();
 

@@ -35,7 +35,7 @@ interface Props {
   trendingCoin: TrendingCoin;
 }
 
-export const TrendingCoinItem: React.FC<Props> = ({ trendingCoin }) => {
+export const TrendingCoinItem: React.FunctionComponent<Props> = ({ trendingCoin }) => {
   const classes = useStyles();
 
   const coins = useAppSelector(selectCoins);
