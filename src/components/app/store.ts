@@ -3,7 +3,8 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import appStateReducer from "@/features/app-state-slice";
 import coinsReducer from "@/features/coinsSlice";
 import dominanceChartListReducer from "@/features/dominance-chart-list-slice";
-import gasOracleSlice from "@/features/gas-oracle-slice";
+import gasOracleReducer from "@/features/gas-oracle-slice";
+import globalCoinDataReducer from "@/features/global-coin-data-slice";
 import coinsMarketChartListReducer from "@/features/marketChartSlice";
 import trendingCoinsReducer from "@/features/trending-coins-slice";
 
@@ -13,8 +14,9 @@ export const store = configureStore({
     coins: coinsReducer,
     coinsMarketChartList: coinsMarketChartListReducer,
     dominanceChartList: dominanceChartListReducer,
-    gasOracle: gasOracleSlice,
+    gasOracle: gasOracleReducer,
     trendingCoins: trendingCoinsReducer,
+    globalCoinData: globalCoinDataReducer,
   },
   devTools: true,
 });
