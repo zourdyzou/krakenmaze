@@ -1,6 +1,5 @@
 import React from "react";
 import { useTheme } from "@material-ui/core";
-import { Skeleton } from "@material-ui/lab";
 import { Area, AreaChart, YAxis } from "recharts";
 
 import { selectCoinMarketChartList } from "@/features/marketChartSlice";
@@ -38,9 +37,7 @@ export const SmallCoinChart: React.FunctionComponent<Props> = ({ coin, dataKey }
 
   return (
     <>
-      {!coinMarketChartList.value[coin.id] ? (
-        <Skeleton animation="wave" height={60} width={100} id="titleSkeleton" />
-      ) : (
+      {coinMarketChartList.value[coin.id] && (
         <AreaChart
           width={100}
           height={60}

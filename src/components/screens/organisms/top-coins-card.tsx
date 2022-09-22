@@ -1,9 +1,10 @@
 import React, { Fragment, useEffect } from "react";
-import { CardHeader, Divider, List, ListItem } from "@material-ui/core";
-import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
+import { CardHeader, Divider, List } from "@material-ui/core";
+import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
 
 import { getTodayDate } from "@/common/helpers/date-handler";
+import { ListItemSkeleton } from "@/components/screens/atoms/list-item-skeleton";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { CoinItem } from "@/components/screens/molecules/coin-item";
 import { fetchCoins, selectCoins } from "@/features/coinsSlice";
@@ -16,23 +17,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: "scroll",
     paddingBottom: 8,
   },
-  listItemSkeleton: {
-    height: 69,
-    "& .MuiSkeleton-circle": {
-      margin: "0 20px",
-    },
-  },
-  listTextSkeleton: {
-    width: `calc(100% - 40px - ${theme.spacing(4)}px)`,
-    "& .MuiSkeleton-text:first-child": {
-      marginBottom: 6,
-    },
-  },
 }));
 
 export const TopCoinsCard: React.FunctionComponent = () => {
   const classes = useStyles();
-  const theme = useTheme();
   const dispatch = useAppDispatch();
 
   const coins = useAppSelector(selectCoins);
@@ -54,27 +42,14 @@ export const TopCoinsCard: React.FunctionComponent = () => {
     <CardLayout>
       <CardHeader
         title="Top Coins"
-        subheader={getTodayDate()}
+        subheader={`Last Updated: ${getTodayDate()}`}
         titleTypographyProps={{ variant: "h6" }}
         subheaderTypographyProps={{ variant: "caption" }}
       />
       <Divider />
       <List dense disablePadding className={classes.coinList}>
         {coins.value.length === 0 || coins.status === "LOADING" ? (
-          <>
-            {Array.from(Array(15).keys()).map((index: number) => (
-              <Fragment key={index}>
-                <ListItem className={classes.listItemSkeleton} disableGutters>
-                  <Skeleton animation="wave" variant="circle" height={theme.spacing(4)} width={theme.spacing(4)} />
-                  <div className={classes.listTextSkeleton}>
-                    <Skeleton animation="wave" height={12} width="80%" />
-                    <Skeleton animation="wave" height={12} width="40%" />
-                  </div>
-                </ListItem>
-                {index < 14 && <Divider />}
-              </Fragment>
-            ))}
-          </>
+          <ListItemSkeleton count={15} />
         ) : (
           <Fragment>
             {coins.value.map((coin: Coin, index: number) => {
