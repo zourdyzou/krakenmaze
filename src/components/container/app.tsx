@@ -66,6 +66,14 @@ export const App: React.FunctionComponent = () => {
         default: "#212946", // #202940
         paper: "#29314F",
       },
+      chartHues: {
+        100: "#7c4dff",
+        200: "#5f63ff",
+        300: "#4073ff",
+        400: "#2281ff",
+        500: "#0e8cfb",
+        600: "#2196f3",
+      },
     },
     ...common,
   });
@@ -85,6 +93,14 @@ export const App: React.FunctionComponent = () => {
       card: {
         default: "#212946",
         paper: "#29314F",
+      },
+      chartHues: {
+        100: "#7c4dff",
+        200: "#5f63ff",
+        300: "#4073ff",
+        400: "#2281ff",
+        500: "#0e8cfb",
+        600: "#2196f3",
       },
     },
     ...common,

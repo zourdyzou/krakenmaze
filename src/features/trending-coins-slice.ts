@@ -5,7 +5,7 @@ import { API_CONFIG as config } from "@/common/constants";
 import { coinGecko as API } from "@/common/endpoints";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
-import { GenericState, Trending, TrendingCoin, TrendingCoinItem } from "@/src/models";
+import { GenericState, TrendingCoin, TrendingCoinItem, TrendingRootObject } from "@/src/models";
 
 const initialState: GenericState<TrendingCoin[]> = {
   value: [],
@@ -21,7 +21,7 @@ export const fetchTrendingCoins = createAsyncThunk("trendingCoins", async () => 
     cancelToken: canceler.token,
   });
 
-  const normalizedResponse = toCamelCase(response.data) as Trending;
+  const normalizedResponse = toCamelCase(response.data) as TrendingRootObject;
 
   return normalizedResponse.coins.map((trendingCoinItem: TrendingCoinItem) => trendingCoinItem.item);
 });

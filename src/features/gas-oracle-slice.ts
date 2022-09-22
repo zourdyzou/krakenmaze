@@ -5,8 +5,7 @@ import { API_CONFIG as config } from "@/common/constants";
 import { etherscan as API } from "@/common/endpoints";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
-import { GenericState } from "@/src/models";
-import { GasOracle, GasOracleState } from "@/src/models/api/gas-oracle";
+import { GasOracle, GasOracleRootObject, GasOracleState } from "@/src/models";
 
 interface Reducers extends SliceCaseReducers<GasOracleState> {
   setSelectedGasFee: (state: GasOracleState, action: PayloadAction<string>) => void;
@@ -34,9 +33,9 @@ export const fetchGasOracle = createAsyncThunk("gasOracle", async () => {
     cancelToken: canceler.token,
   });
 
-  const normalizedResponse = toCamelCase(response.data.result);
+  const normalizedResponse = toCamelCase(response.data) as GasOracleRootObject;
 
-  return normalizedResponse as GasOracle;
+  return normalizedResponse.result as GasOracle;
 });
 
 const gasOracleSlice: Slice<GasOracleState, Reducers, "gasOracle"> = createSlice({

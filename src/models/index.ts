@@ -7,6 +7,11 @@ import { AppState as AppStateInterface } from "@/src/models/globals/app-state";
 
 import { Coin as CoinInterface } from "./api/coin.model";
 import {
+  GasOracle as GasOracleInterface,
+  GasOracleRootObject as GasOracleRootObjectInterface,
+  GasOracleState as GasOracleStateInterface,
+} from "./api/gas-oracle";
+import {
   GlobalCoinData as GlobalCoinDataInterface,
   GlobalCoinDataRootObject as GlobalCoinDataRootObjectInterface,
   MarketCapPercentage as MarketCapPercentageInterface,
@@ -17,6 +22,9 @@ import {
 export type AppState = AppStateInterface;
 export type GenericState<T> = GenericStateInterface<T>;
 export type Coin = CoinInterface;
+export type GasOracle = GasOracleInterface;
+export type GasOracleState = GasOracleStateInterface;
+export type GasOracleRootObject = GasOracleRootObjectInterface;
 export type CoinMarketChart = CoinMarketChartInterface;
 export type CoinMarketChartList = CoinMarketChartListInterface;
 export type TotalMarketCap = TotalMarketCapInterface;
