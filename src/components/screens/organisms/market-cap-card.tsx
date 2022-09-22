@@ -46,9 +46,11 @@ export const MarketCapCard: React.FunctionComponent = () => {
             className={classes.chartToggleButtons}
             value={chartType}
             exclusive
-            onChange={(event: React.MouseEvent<HTMLElement>, newChart: "donut" | "treemap"): void =>
-              setChartType(newChart)
-            }
+            onChange={(event: React.MouseEvent<HTMLElement>, newChart: "donut" | "treemap" | null): void => {
+              if (newChart !== null) {
+                setChartType(newChart);
+              }
+            }}
           >
             <ToggleButton value="donut">
               <Tooltip title="Donut Chart" placement="top">

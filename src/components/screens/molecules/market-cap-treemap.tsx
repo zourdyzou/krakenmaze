@@ -15,9 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     height: "100%",
     width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    padding: theme.spacing(2),
     "& .recharts-wrapper": {
       cursor: "pointer !important",
       "& .recharts-surface": {
@@ -130,7 +128,7 @@ export const MarketCapTreemap: React.FunctionComponent = () => {
         <Skeleton animation="wave" height="100%" className={classes.chartSkeleton} />
       ) : (
         <Box className={classes.container}>
-          <ResponsiveContainer width="80%" height="80%">
+          <ResponsiveContainer width="100%" height="100%">
             <Treemap
               data={formatRawData(globalCoinData.value.totalMarketCap.usd)}
               dataKey="value"
