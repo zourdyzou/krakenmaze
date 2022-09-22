@@ -67,16 +67,16 @@ export const App: React.FunctionComponent = () => {
         paper: "#29314F",
       },
       chartHues: {
-        100: "#7c4dff", // primary
-        200: "#5f63ff",
-        300: "#4073ff",
-        400: "#2281ff",
-        500: "#0e8cfb",
-        600: "#2196f3", // secondary
-        700: "#0e8cfb",
-        800: "#2281ff",
-        900: "#4073ff",
-        A100: "#5f63ff",
+        50: "#7c4dff", // primary
+        100: "#5f63ff",
+        200: "#4073ff",
+        300: "#2281ff",
+        400: "#0e8cfb",
+        500: "#2196f3", // secondary
+        600: "#0e8cfb",
+        700: "#2281ff",
+        800: "#4073ff",
+        900: "#5f63ff",
       },
     },
     ...common,
@@ -99,16 +99,16 @@ export const App: React.FunctionComponent = () => {
         paper: "#29314F",
       },
       chartHues: {
-        100: "#7c4dff", // primary
-        200: "#5f63ff",
-        300: "#4073ff",
-        400: "#2281ff",
-        500: "#0e8cfb",
-        600: "#2196f3", // secondary
-        700: "#0e8cfb",
-        800: "#2281ff",
-        900: "#4073ff",
-        A100: "#5f63ff",
+        50: "#7c4dff", // primary
+        100: "#5f63ff",
+        200: "#4073ff",
+        300: "#2281ff",
+        400: "#0e8cfb",
+        500: "#2196f3", // secondary
+        600: "#0e8cfb",
+        700: "#2281ff",
+        800: "#4073ff",
+        900: "#5f63ff",
       },
     },
     ...common,

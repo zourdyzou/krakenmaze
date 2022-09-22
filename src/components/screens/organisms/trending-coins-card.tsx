@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from "react";
-import { Avatar, CardHeader, Divider, List } from "@material-ui/core";
+import { CardHeader, Divider, List } from "@material-ui/core";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import { WhatshotRounded } from "@material-ui/icons";
 
+import { FireIcon } from "@/components/icons/fire-icon";
 import { ListItemSkeleton } from "@/components/screens/atoms/list-item-skeleton";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { TrendingCoinItem } from "@/components/screens/molecules/trending-coin-item";
@@ -42,11 +42,7 @@ export const TrendingCoinsCard: React.FunctionComponent = () => {
         titleTypographyProps={{ variant: "body1", color: "textPrimary" }}
         subheader="Top-7 searched on CoinGecko"
         subheaderTypographyProps={{ variant: "caption", color: "textSecondary" }}
-        avatar={
-          <Avatar variant="circle" className={classes.avatarColor}>
-            <WhatshotRounded />
-          </Avatar>
-        }
+        avatar={<FireIcon />}
       />
       <Divider />
       <List dense disablePadding className={classes.trendingCoinList}>

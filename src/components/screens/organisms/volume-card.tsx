@@ -1,6 +1,7 @@
 import React from "react";
-import { CardHeader } from "@material-ui/core";
+import { Avatar, CardHeader } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
+import { BarChartRounded } from "@material-ui/icons";
 import { Skeleton } from "@material-ui/lab";
 
 import { shortenNumber } from "@/common/helpers/shorten-number";
@@ -13,6 +14,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "100%",
     width: "100%",
     marginTop: -35,
+  },
+  avatarColor: {
+    marginRight: 6,
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.card.paper,
+    borderRadius: 8,
   },
 }));
 
@@ -32,6 +39,11 @@ export const VolumeCard: React.FunctionComponent = () => {
           ) : (
             <Skeleton animation="wave" height={32} width={50} />
           )
+        }
+        avatar={
+          <Avatar variant="rounded" className={classes.avatarColor}>
+            <BarChartRounded />
+          </Avatar>
         }
         subheaderTypographyProps={{ variant: "h6", color: "textPrimary" }}
       />

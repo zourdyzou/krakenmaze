@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { CardHeader, Tooltip } from "@material-ui/core";
+import { Avatar, CardHeader, Tooltip } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import { DashboardRounded, DonutLargeRounded } from "@material-ui/icons";
+import { DashboardRounded, DonutLargeRounded, PieChartRounded } from "@material-ui/icons";
 import { Skeleton, ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 
 import { shortenNumber } from "@/common/helpers/shorten-number";
@@ -19,6 +19,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   chartToggleButtons: {
     margin: "12px 12px 0 0",
+  },
+  avatarColor: {
+    marginRight: 6,
+    color: theme.palette.primary.main,
+    backgroundColor: theme.palette.card.paper,
+    borderRadius: 8,
   },
 }));
 
@@ -40,6 +46,11 @@ export const MarketCapCard: React.FunctionComponent = () => {
             <Skeleton animation="wave" height={32} width={50} />
           )
         }
+        avatar={
+          <Avatar variant="rounded" className={classes.avatarColor}>
+            <PieChartRounded />
+          </Avatar>
+        }
         action={
           <ToggleButtonGroup
             size="small"
@@ -58,7 +69,7 @@ export const MarketCapCard: React.FunctionComponent = () => {
               </Tooltip>
             </ToggleButton>
             <ToggleButton value="treemap">
-              <Tooltip title="Treemap" placement="top">
+              <Tooltip title="Coin Map" placement="top">
                 <DashboardRounded />
               </Tooltip>
             </ToggleButton>
