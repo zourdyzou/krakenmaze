@@ -26,6 +26,8 @@ export const TopCoinsCard: React.FunctionComponent = () => {
   const coins = useAppSelector(selectCoins);
   const coinMarketChartLists = useAppSelector(selectCoinMarketChartList);
 
+  const top15: Coin[] = coins.value.slice(0, 15);
+
   useEffect(() => {
     if (coins.value.length === 0 && coins.status === "IDLE") {
       dispatch(fetchCoins());
@@ -34,9 +36,9 @@ export const TopCoinsCard: React.FunctionComponent = () => {
 
   useEffect(() => {
     if (Object.keys(coinMarketChartLists.value).length === 0 && coinMarketChartLists.status === "IDLE") {
-      dispatch(fetchCoinMarketChartList(coins.value.map((coin: Coin) => coin.id)));
+      dispatch(fetchCoinMarketChartList(top15.map((coin: Coin) => coin.id)));
     }
-  }, [dispatch, coins.value, coinMarketChartLists.value, coinMarketChartLists.status]);
+  }, [dispatch, top15, coinMarketChartLists.value, coinMarketChartLists.status]);
 
   return (
     <CardLayout>
@@ -48,11 +50,11 @@ export const TopCoinsCard: React.FunctionComponent = () => {
       />
       <Divider />
       <List dense disablePadding className={classes.coinList}>
-        {coins.value.length === 0 || coins.status === "LOADING" ? (
+        {top15.length === 0 || coins.status === "LOADING" ? (
           <ListItemSkeleton count={15} height={69} iconDimensions={theme.spacing(4)} />
         ) : (
           <Fragment>
-            {coins.value.map((coin: Coin, index: number) => {
+            {top15.map((coin: Coin, index: number) => {
               return (
                 <Fragment key={coin.id}>
                   <CoinItem coin={coin} />

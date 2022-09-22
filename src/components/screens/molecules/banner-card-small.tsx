@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { ArrowDownwardRounded, ArrowUpwardRounded } from "@material-ui/icons";
@@ -6,8 +6,8 @@ import { Skeleton } from "@material-ui/lab";
 
 import { roundDecimals } from "@/common/helpers/round-decimals";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
-import { selectGlobalCoinData } from "@/features/global-coin-data-slice";
-import { useAppSelector } from "@/hooks/*";
+import { fetchGlobalCoinData, selectGlobalCoinData } from "@/features/global-coin-data-slice";
+import { useAppDispatch, useAppSelector } from "@/hooks/*";
 
 const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
   cardWrapper: {
@@ -47,10 +47,18 @@ interface StyleProps {
 }
 
 export const BannerCardSmall: React.FunctionComponent = () => {
+  const dispatch = useAppDispatch();
+
   const globalCoinData = useAppSelector(selectGlobalCoinData);
 
   const change: number = globalCoinData.value?.marketCapChangePercentage24HUsd || 0;
   const classes = useStyles({ change: change });
+
+  useEffect(() => {
+    if (globalCoinData.value === null && globalCoinData.status === "IDLE") {
+      dispatch(fetchGlobalCoinData());
+    }
+  }, [dispatch, globalCoinData.value, globalCoinData.status]);
 
   return (
     <CardLayout>

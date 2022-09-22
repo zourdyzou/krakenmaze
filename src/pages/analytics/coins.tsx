@@ -3,9 +3,9 @@ import { Grid } from "@material-ui/core";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 
 import { BannerCardSmall } from "@/components/screens/molecules/banner-card-small";
-import { DominanceCard } from "@/components/screens/organisms/dominance-card";
+import { CoinDominanceCard } from "@/components/screens/organisms/coin-dominance-card";
 import { GasOracleCard } from "@/components/screens/organisms/gas-indicator-card";
-import { GlobalCoinDataCard } from "@/components/screens/organisms/glibal-coin-data-card";
+import { GlobalCoinDataCard } from "@/components/screens/organisms/global-coin-data-card";
 import { TopCoinsCard } from "@/components/screens/organisms/top-coins-card";
 import { TrendingCoinsCard } from "@/components/screens/organisms/trending-coins-card";
 import { fetchGlobalCoinData, selectGlobalCoinData } from "@/features/global-coin-data-slice";
@@ -49,7 +49,7 @@ export const CoinsPage: React.FunctionComponent = () => {
       <Grid item xs={6} md={6} lg={4}>
         <Grid container className={classes.innerWrapper} spacing={0}>
           <Grid item xs={12} style={{ height: 275 }}>
-            <DominanceCard />
+            <CoinDominanceCard />
           </Grid>
           <Grid item xs={12} style={{ height: 205 }}>
             <GasOracleCard />
