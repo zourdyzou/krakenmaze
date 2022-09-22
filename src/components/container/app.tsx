@@ -67,12 +67,16 @@ export const App: React.FunctionComponent = () => {
         paper: "#29314F",
       },
       chartHues: {
-        100: "#7c4dff",
+        100: "#7c4dff", // primary
         200: "#5f63ff",
         300: "#4073ff",
         400: "#2281ff",
         500: "#0e8cfb",
-        600: "#2196f3",
+        600: "#2196f3", // secondary
+        700: "#0e8cfb",
+        800: "#2281ff",
+        900: "#4073ff",
+        A100: "#5f63ff",
       },
     },
     ...common,
@@ -95,12 +99,16 @@ export const App: React.FunctionComponent = () => {
         paper: "#29314F",
       },
       chartHues: {
-        100: "#7c4dff",
+        100: "#7c4dff", // primary
         200: "#5f63ff",
         300: "#4073ff",
         400: "#2281ff",
         500: "#0e8cfb",
-        600: "#2196f3",
+        600: "#2196f3", // secondary
+        700: "#0e8cfb",
+        800: "#2281ff",
+        900: "#4073ff",
+        A100: "#5f63ff",
       },
     },
     ...common,
