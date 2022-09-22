@@ -9,7 +9,7 @@ import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { selectGlobalCoinData } from "@/features/global-coin-data-slice";
 import { useAppSelector } from "@/hooks/*";
 
-const useStyles = makeStyles<Theme, { change: number }>((theme: Theme) => ({
+const useStyles = makeStyles<Theme, StyleProps>((theme: Theme) => ({
   cardWrapper: {
     display: "flex",
     justifyContent: "space-between",
@@ -19,7 +19,8 @@ const useStyles = makeStyles<Theme, { change: number }>((theme: Theme) => ({
   content: {
     marginLeft: 8,
     "& .MuiTypography-h6": {
-      color: (change: number) => (change >= 0 ? theme.palette.success.main : theme.palette.error.main),
+      color: (styleProps: StyleProps) =>
+        styleProps.change >= 0 ? theme.palette.success.main : theme.palette.error.main,
     },
   },
   icon: {
@@ -31,10 +32,15 @@ const useStyles = makeStyles<Theme, { change: number }>((theme: Theme) => ({
     "& .MuiSvgIcon-root": {
       height: theme.spacing(5),
       width: theme.spacing(5),
-      color: (change: number) => (change >= 0 ? theme.palette.success.main : theme.palette.error.main),
+      color: (styleProps: StyleProps) =>
+        styleProps.change >= 0 ? theme.palette.success.main : theme.palette.error.main,
     },
   },
 }));
+
+interface StyleProps {
+  change: number;
+}
 
 export const BannerCardSmall: React.FunctionComponent = () => {
   const globalCoinData = useAppSelector(selectGlobalCoinData);

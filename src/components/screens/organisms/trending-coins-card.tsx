@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { Avatar, CardHeader, Divider, List } from "@material-ui/core";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { WhatshotRounded } from "@material-ui/icons";
 
 import { ListItemSkeleton } from "@/components/screens/atoms/list-item-skeleton";
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export const TrendingCoinsCard: React.FunctionComponent = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
   const trendingCoins = useAppSelector(selectTrendingCoins);
@@ -50,7 +51,7 @@ export const TrendingCoinsCard: React.FunctionComponent = () => {
       <Divider />
       <List dense disablePadding className={classes.trendingCoinList}>
         {trendingCoins.value.length === 0 || trendingCoins.status === "LOADING" ? (
-          <ListItemSkeleton count={7} />
+          <ListItemSkeleton count={7} height={60} iconDimensions={theme.spacing(3)} />
         ) : (
           <>
             {trendingCoins.value.map((trendingCoin: TrendingCoin, index: number) => {

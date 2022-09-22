@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { CardHeader, Divider, List } from "@material-ui/core";
-import { makeStyles, Theme } from "@material-ui/core/styles";
-import { Skeleton } from "@material-ui/lab";
+import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 
 import { getTodayDate } from "@/common/helpers/date-handler";
 import { ListItemSkeleton } from "@/components/screens/atoms/list-item-skeleton";
@@ -21,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export const TopCoinsCard: React.FunctionComponent = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
   const coins = useAppSelector(selectCoins);
@@ -49,7 +49,7 @@ export const TopCoinsCard: React.FunctionComponent = () => {
       <Divider />
       <List dense disablePadding className={classes.coinList}>
         {coins.value.length === 0 || coins.status === "LOADING" ? (
-          <ListItemSkeleton count={15} />
+          <ListItemSkeleton count={15} height={69} iconDimensions={theme.spacing(4)} />
         ) : (
           <Fragment>
             {coins.value.map((coin: Coin, index: number) => {
