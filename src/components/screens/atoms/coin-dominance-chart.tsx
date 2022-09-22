@@ -108,10 +108,6 @@ export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, d
                   return null;
                 }
               }}
-              formatter={(value: number, name: string, props: any): any => {
-                console.log(props);
-                return [`US$${shortenNumber(value)}`, name === "top1" ? top1.name : top2.name];
-              }}
             />
             <Area
               type="monotone"
