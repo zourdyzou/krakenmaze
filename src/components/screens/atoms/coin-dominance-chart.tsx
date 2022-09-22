@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "@material-ui/core";
+import { Box, Typography, useTheme } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
@@ -25,6 +25,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   chartSkeleton: {
     margin: "0 16px",
     transform: "scale(1, 0.8)",
+  },
+  customTooltip: {
+    borderRadius: 12,
+    padding: 12,
+    backgroundColor: `${theme.palette.background.default}dd`,
+    "& .MuiTypography-root:nth-child(2)": {
+      color: theme.palette.primary.main,
+    },
+    "& .MuiTypography-root:nth-child(3)": {
+      color: theme.palette.secondary.main,
+    },
   },
 }));
 
@@ -80,10 +91,27 @@ export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, d
             <XAxis dataKey="date" tickFormatter={(tick) => convertTimestamp(tick)} />
             <YAxis tickFormatter={(tick) => shortenNumber(tick) as string} />
             <Tooltip
-              formatter={(value: number, name: string): any => [
-                `US$${shortenNumber(value)}`,
-                name === "top1" ? top1.name : top2.name,
-              ]}
+              content={({ active, payload, label }) => {
+                if (active && payload && payload.length) {
+                  return (
+                    <Box className={classes.customTooltip}>
+                      <Typography variant="body1">{convertTimestamp(label, true)}</Typography>
+                      <Typography variant="body2">
+                        {`${top1.name}: US$${shortenNumber(payload[0].payload.top1)}`}
+                      </Typography>
+                      <Typography variant="body2">
+                        {`${top2.name}: US$${shortenNumber(payload[1].payload.top2)}`}
+                      </Typography>
+                    </Box>
+                  );
+                } else {
+                  return null;
+                }
+              }}
+              formatter={(value: number, name: string, props: any): any => {
+                console.log(props);
+                return [`US$${shortenNumber(value)}`, name === "top1" ? top1.name : top2.name];
+              }}
             />
             <Area
               type="monotone"
@@ -94,6 +122,7 @@ export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, d
               stroke={theme.palette.primary.main}
               fillOpacity={1}
               fill="url(#top1)"
+              cursor="pointer"
             />
             <Area
               type="monotone"
@@ -104,6 +133,7 @@ export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, d
               stroke={theme.palette.secondary.main}
               fillOpacity={1}
               fill="url(#top2)"
+              cursor="pointer"
             />
           </AreaChart>
         </ResponsiveContainer>
