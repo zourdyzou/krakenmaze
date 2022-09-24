@@ -3,8 +3,8 @@ import { Drawer as MuiDrawer, Toolbar } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { appBarHeight, drawerWidth } from "@/common/constants";
-import { NavItem } from "@/components/screens/atoms/navigation-list-item";
 import { DrawerItems } from "@/components/screens/molecules/drawer-items";
+import { RootModule } from "@/src/models";
 
 const useStyles = makeStyles((_theme: Theme) => ({
   drawer: {
@@ -25,11 +25,11 @@ const useStyles = makeStyles((_theme: Theme) => ({
 }));
 
 interface Props {
-  navItems: NavItem[];
+  rootModule: RootModule[];
   anchor?: "bottom" | "left" | "right" | "top";
 }
 
-export const SidebarDrawer: React.FunctionComponent<Props> = ({ navItems, anchor }) => {
+export const SidebarDrawer: React.FunctionComponent<Props> = ({ rootModule, anchor }) => {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,7 @@ export const SidebarDrawer: React.FunctionComponent<Props> = ({ navItems, anchor
     >
       <Toolbar />
       <div className={classes.drawerContainer}>
-        <DrawerItems navItems={navItems} />
+        <DrawerItems rootModule={rootModule} />
       </div>
     </MuiDrawer>
   );

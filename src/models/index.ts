@@ -18,6 +18,7 @@ import {
   TotalMarketCap as TotalMarketCapInterface,
   TotalVolume as TotalVolumeInterface,
 } from "./api/global-coin-data";
+import { Page as PageInterface, RootModule as RootModuleInterface } from "./common/root-module";
 
 export type AppState = AppStateInterface;
 export type GenericState<T> = GenericStateInterface<T>;
@@ -30,6 +31,8 @@ export type CoinMarketChartList = CoinMarketChartListInterface;
 export type TotalMarketCap = TotalMarketCapInterface;
 export type TotalVolume = TotalVolumeInterface;
 export type MarketCapPercentage = MarketCapPercentageInterface;
+export type Page = PageInterface;
+export type RootModule = RootModuleInterface;
 export type GlobalCoinData = GlobalCoinDataInterface;
 export type GlobalCoinDataRootObject = GlobalCoinDataRootObjectInterface;
 

@@ -3,6 +3,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
+import { Page } from "@/src/models";
+
 const useStyles = makeStyles((theme: Theme) => ({
   navListItem: {
     borderRadius: 12,
@@ -10,31 +12,29 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export interface NavItem {
-  label: string;
-  path: string;
-  icon: JSX.Element;
-  page: JSX.Element;
-  index: number;
-}
-
 interface Props {
-  navItem: NavItem;
+  page: Page;
 }
 
-export const NavigationListItem: React.FunctionComponent<Props> = ({ navItem }) => {
+export const NavigationListItem: React.FunctionComponent<Props> = ({ page }) => {
   const classes = useStyles();
   const location = useLocation();
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(navItem.path);
+    history.push(page.path);
   };
 
   return (
-    <ListItem>
-      <ListItemIcon>{navItem.icon}</ListItemIcon>
-      <ListItemText primary={navItem.label} />
+    <ListItem
+      button
+      className={classes.navListItem}
+      key={page.index}
+      onClick={handleClick}
+      selected={page.path === location.pathname}
+    >
+      <ListItemIcon>{page.icon}</ListItemIcon>
+      <ListItemText primary={page.label} />
     </ListItem>
   );
 };

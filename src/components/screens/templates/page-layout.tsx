@@ -3,9 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { appBarHeight, drawerWidth } from "@/common/constants";
-import { NavItem } from "@/components/screens/atoms/navigation-list-item";
 import { ApplicationBar } from "@/components/screens/organisms/application-bar";
 import { SidebarDrawer } from "@/components/screens/organisms/sidebar-drawer";
+import { Page, RootModule } from "@/src/models";
 
 const useStyles = makeStyles((theme: Theme) => ({
   rootWrapper: {
@@ -24,23 +24,27 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props {
-  navItems: NavItem[];
+  rootModule: RootModule[];
 }
 
-export const PageLayout: React.FunctionComponent<Props> = ({ navItems }) => {
+export const PageLayout: React.FunctionComponent<Props> = ({ rootModule }) => {
   const classes = useStyles();
+
+  const pages = rootModule
+    .map((moduleObject: RootModule) => moduleObject.pages)
+    .reduce((acc, page: Page[]) => acc.concat(page), []);
 
   return (
     <div className={classes.rootWrapper}>
       <ApplicationBar />
-      <SidebarDrawer navItems={navItems} />
+      <SidebarDrawer rootModule={rootModule} />
       <main className={classes.content}>
         <Switch>
-          {navItems
+          {pages
             .slice()
             .sort((a, b) => b.index - a.index)
-            .map((item: NavItem) => {
-              return <Route key={item.path} path={item.path} render={() => item.page} />;
+            .map((page: Page) => {
+              return <Route key={page.path} path={page.path} render={() => page.page} />;
             })}
         </Switch>
       </main>

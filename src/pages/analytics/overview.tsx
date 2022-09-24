@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const CoinsPage: React.FunctionComponent = () => {
+export const OverviewPage: React.FunctionComponent = () => {
   const classes = useStyles();
   const theme = useTheme();
 
