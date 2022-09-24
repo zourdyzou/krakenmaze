@@ -6,18 +6,19 @@ import { Skeleton } from "@material-ui/lab";
 
 import { shortenNumber } from "@/common/helpers/shorten-number";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
+import { VolumeBarChart } from "@/components/screens/molecules/volume-bar-chart";
 import { selectGlobalCoinData } from "@/features/global-coin-data-slice";
 import { useAppSelector } from "@/hooks/*";
 
 const useStyles = makeStyles((theme: Theme) => ({
   chartWrapper: {
-    height: "100%",
+    height: "calc(100% - 84px)",
     width: "100%",
     marginTop: -35,
   },
   avatarColor: {
     marginRight: 6,
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
     backgroundColor: theme.palette.card.paper,
     borderRadius: 8,
   },
@@ -37,7 +38,7 @@ export const VolumeCard: React.FunctionComponent = () => {
           globalCoinData.value !== null ? (
             `US$${shortenNumber(globalCoinData.value.totalVolume.usd)}`
           ) : (
-            <Skeleton animation="wave" height={32} width={50} />
+            <Skeleton animation="wave" height={32} width={150} />
           )
         }
         avatar={
@@ -47,7 +48,9 @@ export const VolumeCard: React.FunctionComponent = () => {
         }
         subheaderTypographyProps={{ variant: "h6", color: "textPrimary" }}
       />
-      <div className={classes.chartWrapper}>&nbsp;</div>
+      <div className={classes.chartWrapper}>
+        <VolumeBarChart />
+      </div>
     </CardLayout>
   );
 };

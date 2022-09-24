@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
+import chroma from "chroma-js";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { roundDecimals } from "@/common/helpers/round-decimals";
@@ -33,7 +34,11 @@ interface DataFormat {
   value: number;
 }
 
-export const GlobalCoinDataDonutChart: React.FunctionComponent = () => {
+interface Props {
+  coinsToDisplay: number;
+}
+
+export const GlobalCoinDataDonutChart: React.FunctionComponent<Props> = ({ coinsToDisplay }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -43,7 +48,6 @@ export const GlobalCoinDataDonutChart: React.FunctionComponent = () => {
   const formatRawData = (totalValue: number) => {
     const newData: DataFormat[] = [];
 
-    const coinsToDisplay = 5;
     const topCoins = coins.value.slice(0, coinsToDisplay);
 
     topCoins.forEach((coin: Coin) => {
@@ -84,7 +88,15 @@ export const GlobalCoinDataDonutChart: React.FunctionComponent = () => {
               cursor="pointer"
             >
               {formatRawData(globalCoinData.value.totalMarketCap.usd).map((data: DataFormat, index: number) => (
-                <Cell key={`cell-${index}`} fill={Object.values(theme.palette.chartHues)[index]} />
+                <Cell
+                  key={`cell-${index}`}
+                  id={`cell-formatted-data-${data.coinName}`}
+                  fill={
+                    chroma.scale([theme.palette.primary.main, theme.palette.secondary.main]).colors(coinsToDisplay + 1)[
+                      index
+                    ]
+                  }
+                />
               ))}
             </Pie>
             <Tooltip

@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
+import chroma from "chroma-js";
 import { ResponsiveContainer, Tooltip, Treemap } from "recharts";
 
 import { roundDecimals } from "@/common/helpers/round-decimals";
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     height: "100%",
     width: "100%",
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     "& .recharts-wrapper": {
       cursor: "pointer !important",
       "& .recharts-surface": {
@@ -48,7 +49,11 @@ interface DataFormat {
   children: DataGroup[];
 }
 
-export const MarketCapTreemap: React.FunctionComponent = () => {
+interface Props {
+  coinsToDisplay: number; //Ideally display 58 for color consistency
+}
+
+export const MarketCapTreemap: React.FunctionComponent<Props> = ({ coinsToDisplay }) => {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -63,7 +68,6 @@ export const MarketCapTreemap: React.FunctionComponent = () => {
       },
     ];
 
-    const coinsToDisplay = 58; // for color consistency
     const topCoins = coins.value.slice(0, coinsToDisplay);
 
     topCoins.forEach((coin: Coin) => {
@@ -83,16 +87,7 @@ export const MarketCapTreemap: React.FunctionComponent = () => {
     return newData;
   };
 
-  const CustomizedContent: React.FunctionComponent<any> = ({
-    depth,
-    x,
-    y,
-    width,
-    height,
-    index,
-    colors,
-    coinSymbol,
-  }) => {
+  const CustomizedContent: React.FC<any> = ({ depth, x, y, width, height, index, colors, coinName, coinSymbol }) => {
     return (
       <g>
         <rect
@@ -107,15 +102,15 @@ export const MarketCapTreemap: React.FunctionComponent = () => {
             strokeOpacity: 1 / (depth + 1e-10),
           }}
         />
-        {index < 2 && (
+        {(index < 2 || index === coinsToDisplay) && (
           <text
-            x={x + width / 2 - 12}
+            x={index < 2 ? x + width / 2 - 12 : x + width / 2 - 25}
             y={y + height / 2 + 7}
             fill={theme.palette.text.primary}
             fontSize={16}
             fillOpacity={0.7}
           >
-            {coinSymbol}
+            {index < 2 ? coinSymbol : coinName}
           </text>
         )}
       </g>
@@ -132,9 +127,15 @@ export const MarketCapTreemap: React.FunctionComponent = () => {
             <Treemap
               data={formatRawData(globalCoinData.value.totalMarketCap.usd)}
               dataKey="value"
-              stroke="#000000"
               fill={theme.palette.primary.main}
-              content={<CustomizedContent colors={Object.values(theme.palette.chartHues)} />}
+              content={
+                <CustomizedContent
+                  colors={chroma
+                    .scale([theme.palette.primary.main, theme.palette.secondary.main])
+                    .gamma(0.35)
+                    .colors(coinsToDisplay + 1)}
+                />
+              }
             >
               <Tooltip
                 content={({ active, payload }) => {
