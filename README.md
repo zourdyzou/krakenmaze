@@ -73,9 +73,9 @@ This starter uses pnpm by default, but this choice is yours. If you'd like to sw
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
 
-## 🎃 Preview Project
+## 🎃 Recent Development Preview (Updated every 24-h)
 
-![krakenmaze](https://user-images.githubusercontent.com/69587933/191638926-f3dbef33-f8b3-4328-a323-6138436087ae.png)
+![Cryptoscapes-Cryptocurrency-Prices-Charts-and-Market-Overview](https://user-images.githubusercontent.com/69587933/192080814-1275d910-2879-417c-af1e-c067681d3b12.png)
 
 
 
