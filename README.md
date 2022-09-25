@@ -23,11 +23,6 @@ The information and data used in Cryptoscapes is provided kindly by the followin
 - [Alternative.me][7]
 - [Blockchain.com][8]
 
-## Preview Project
-
-![krakenmaze](https://user-images.githubusercontent.com/69587933/191638926-f3dbef33-f8b3-4328-a323-6138436087ae.png)
-
-
 
 ## 🎯 TODO: some of the things that needs to be working on.
 
@@ -77,6 +72,12 @@ This starter uses pnpm by default, but this choice is yours. If you'd like to sw
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for more information.
+
+## 🎃 Recent Development Preview (Updated every 24-h)
+
+![Krakenmaze-Cryptocurrency-Prices-Charts-and-Market-Overview](https://user-images.githubusercontent.com/69587933/192123379-517aa931-1813-4403-9771-fa3acc1dc4cc.png)
+
+
 
 
 
