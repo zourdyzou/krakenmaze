@@ -75,7 +75,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## 🎃 Recent Development Preview (Updated every 24-h)
 
-![Cryptoscapes-Cryptocurrency-Prices-Charts-and-Market-Overview](https://user-images.githubusercontent.com/69587933/192080814-1275d910-2879-417c-af1e-c067681d3b12.png)
+![Krakenmaze-Cryptocurrency-Prices-Charts-and-Market-Overview](https://user-images.githubusercontent.com/69587933/192123379-517aa931-1813-4403-9771-fa3acc1dc4cc.png)
+
 
 
 
