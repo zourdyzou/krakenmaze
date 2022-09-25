@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { API_CONFIG as config } from "@/common/constants";
 import { coinGecko as API } from "@/common/endpoints";
+import { cacheWithExpiry, retrieveCache } from "@/common/helpers/cache-storage-handler";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
 import { GenericState, GlobalCoinData, GlobalCoinDataRootObject } from "@/src/models";
@@ -15,15 +16,22 @@ const initialState: GenericState<GlobalCoinData | null> = {
 export const fetchGlobalCoinData = createAsyncThunk("globalCoinData", async () => {
   const canceler = axios.CancelToken.source();
 
-  const response = await axios.request({
-    ...config("coinGecko"),
-    url: API.global,
-    cancelToken: canceler.token,
-  });
+  const cachedData: GlobalCoinDataRootObject | null = retrieveCache("globalCoinData");
 
-  const normalizedResponse = toCamelCase(response.data) as GlobalCoinDataRootObject;
+  if (cachedData) {
+    return cachedData.data as GlobalCoinData;
+  } else {
+    const response = await axios.request({
+      ...config("coinGecko"),
+      url: API.global,
+      cancelToken: canceler.token,
+    });
 
-  return normalizedResponse.data;
+    const normalizedResponse = toCamelCase(response.data) as GlobalCoinDataRootObject;
+    cacheWithExpiry("globalCoinData", normalizedResponse, 3600000); // Cache Period: 1 hour
+
+    return normalizedResponse.data as GlobalCoinData;
+  }
 });
 
 const globalCoinDataSlice: Slice<GenericState<GlobalCoinData | null>, {}, "globalCoinData"> = createSlice({

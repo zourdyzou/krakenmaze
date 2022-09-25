@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { API_CONFIG as config } from "@/common/constants";
 import { coinGecko as API } from "@/common/endpoints";
+import { cacheWithExpiry, retrieveCache } from "@/common/helpers/cache-storage-handler";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
 import { Coin, GenericState } from "@/src/models";
@@ -15,15 +16,22 @@ const initialState: GenericState<Coin[]> = {
 export const fetchCoins = createAsyncThunk("coins", async () => {
   const canceler = axios.CancelToken.source();
 
-  const response = await axios.request({
-    ...config("coinGecko"),
-    url: API.coins,
-    cancelToken: canceler.token,
-  });
+  const cachedData: Coin[] | null = retrieveCache("coins");
 
-  const normalizedResponse = toCamelCase(response.data);
+  if (cachedData) {
+    return cachedData as Coin[];
+  } else {
+    const response = await axios.request({
+      ...config("coinGecko"),
+      url: API.coins,
+      cancelToken: canceler.token,
+    });
 
-  return normalizedResponse as Coin[];
+    const normalizedResponse = toCamelCase(response.data);
+    cacheWithExpiry("coins", normalizedResponse, 60000); // Cache Period: 1 minute
+
+    return normalizedResponse as Coin[];
+  }
 });
 
 const coinsSlice: Slice<GenericState<Coin[]>, {}, "coins"> = createSlice({

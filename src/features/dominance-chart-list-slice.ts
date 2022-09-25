@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { API_CONFIG as config } from "@/common/constants";
 import { coinGecko as API } from "@/common/endpoints";
+import { cacheWithExpiry, retrieveCache } from "@/common/helpers/cache-storage-handler";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
 import { CoinMarketChartList, GenericState } from "@/src/models";
@@ -16,19 +17,27 @@ const initialState: GenericState<CoinMarketChartList> = {
 export const fetchDominanceChartList = createAsyncThunk("dominanceChartList", async (coinIdList: string[]) => {
   const canceler = axios.CancelToken.source();
 
-  const normalizedResponse = {} as any;
+  const cachedData: CoinMarketChartList | null = retrieveCache("dominanceChart");
 
-  for (let i = 0; i < coinIdList.length; i++) {
-    const response = await axios.request({
-      ...config("coinGecko"),
-      url: API.coinMarketChart(coinIdList[i], 30),
-      cancelToken: canceler.token,
-    });
+  if (cachedData) {
+    return cachedData as CoinMarketChartList;
+  } else {
+    const normalizedResponse = {} as any;
 
-    normalizedResponse[coinIdList[i]] = toCamelCase(response.data);
+    for (let i = 0; i < coinIdList.length; i++) {
+      const response = await axios.request({
+        ...config("coinGecko"),
+        url: API.coinMarketChart(coinIdList[i], 30),
+        cancelToken: canceler.token,
+      });
+
+      normalizedResponse[coinIdList[i]] = toCamelCase(response.data);
+    }
+
+    cacheWithExpiry("dominanceChart", normalizedResponse, 3600000); // Cache Period: 1 hour
+
+    return normalizedResponse as CoinMarketChartList;
   }
-
-  return normalizedResponse as CoinMarketChartList;
 });
 
 const dominanceChartListSlice: Slice<GenericState<CoinMarketChartList>, {}, "dominanceChartList"> = createSlice({

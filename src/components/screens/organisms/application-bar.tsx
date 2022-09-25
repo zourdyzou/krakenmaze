@@ -22,11 +22,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    "& img": {
+    "& svg": {
       marginRight: 8,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
     },
   },
+
   sideUtils: {
     textAlign: "center",
     display: "flex",
@@ -65,7 +68,7 @@ export const ApplicationBar: React.FunctionComponent = () => {
     <MuiAppBar position="fixed" className={classes.appBar} color="transparent">
       <Toolbar>
         <Box className={classes.logoWrapper}>
-          <IconComponent iconSource={Logo} height={28} width={28} alt="Krakenmaze Logo" />
+          <IconComponent iconSource={Logo} height={30} width={35} alt="Krakenmaze Logo" />
           <Typography variant="h5" noWrap>
             Krakenmaze
           </Typography>

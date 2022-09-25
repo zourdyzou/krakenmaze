@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   chartWrapper: {
     height: "calc(100% - 84px)",
     width: "100%",
-    marginTop: -35,
   },
   avatarColor: {
     marginRight: 6,
