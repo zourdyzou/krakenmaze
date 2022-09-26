@@ -42,7 +42,8 @@ The information and data used in Cryptoscapes is provided kindly by the followin
 ### Directory Structure
 
 - [`.github`](.github) — GitHub configuration including the CI workflow.<br>
-- [`.husky`](.husky) — Husky configuration and hooks.<br>
+- [`webpack`](./webpack) — Webpack configuration and bundling rules to compile it as a static files.<br>
+- [`test`](./test) — Test rules and configuration: TDD.<br>
 - [`public`](./public) — Static assets such as robots.txt, images, and favicon.<br>
 - [`src`](./src) — Application source code, including pages, components, styles.
 
