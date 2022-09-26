@@ -75,7 +75,7 @@ export const BannerCardSmall: React.FunctionComponent = () => {
               24H Market Cap Change
             </Typography>
           </Box>
-          <Box className={classes.icon}>{change > 0 ? <ArrowUpwardRounded /> : <ArrowDownwardRounded />}</Box>
+          <Box className={classes.icon}>{change >= 0 ? <ArrowUpwardRounded /> : <ArrowDownwardRounded />}</Box>
         </Box>
       )}
     </CardLayout>

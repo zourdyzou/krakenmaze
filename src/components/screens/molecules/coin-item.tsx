@@ -49,7 +49,7 @@ interface Props {
 }
 
 export const CoinItem: React.FunctionComponent<Props> = ({ coin }) => {
-  const classes = useStyles({ change: coin.marketCapChangePercentage24H });
+  const classes = useStyles({ change: coin.priceChangePercentage24H });
 
   return (
     <ListItem disableGutters>
@@ -74,7 +74,7 @@ export const CoinItem: React.FunctionComponent<Props> = ({ coin }) => {
       <ListItemText
         className={classes.coinPrice}
         primary={`US$${roundDecimals(coin.currentPrice, 3)}`}
-        secondary={`${coin.priceChangePercentage24H > 0 ? "+" : ""}${roundDecimals(coin.priceChangePercentage24H)}%`}
+        secondary={`${coin.priceChangePercentage24H >= 0 ? "+" : ""}${roundDecimals(coin.priceChangePercentage24H)}%`}
         primaryTypographyProps={{ variant: "subtitle1", noWrap: true }}
         secondaryTypographyProps={{ variant: "subtitle2" }}
       />

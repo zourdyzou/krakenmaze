@@ -23,13 +23,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     justifyContent: "center",
     "& svg": {
-      marginRight: 8,
+      marginRight: 10,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
     },
   },
-
   sideUtils: {
     textAlign: "center",
     display: "flex",
@@ -70,7 +69,7 @@ export const ApplicationBar: React.FunctionComponent = () => {
         <Box className={classes.logoWrapper}>
           <IconComponent iconSource={Logo} height={30} width={35} alt="Krakenmaze Logo" />
           <Typography variant="h5" noWrap>
-            Krakenmaze
+            Arkscapes
           </Typography>
         </Box>
 

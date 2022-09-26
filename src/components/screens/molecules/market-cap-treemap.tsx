@@ -87,7 +87,17 @@ export const MarketCapTreemap: React.FunctionComponent<Props> = ({ coinsToDispla
     return newData;
   };
 
-  const CustomizedContent: React.FC<any> = ({ depth, x, y, width, height, index, colors, coinName, coinSymbol }) => {
+  const CustomizedContent: React.FunctionComponent<any> = ({
+    depth,
+    x,
+    y,
+    width,
+    height,
+    index,
+    colors,
+    coinName,
+    coinSymbol,
+  }) => {
     return (
       <g>
         <rect
@@ -98,8 +108,7 @@ export const MarketCapTreemap: React.FunctionComponent<Props> = ({ coinsToDispla
           style={{
             fill: colors[index % colors.length],
             stroke: theme.palette.card.default,
-            strokeWidth: 2 / (depth + 1e-10),
-            strokeOpacity: 1 / (depth + 1e-10),
+            strokeWidth: 2,
           }}
         />
         {(index < 2 || index === coinsToDisplay) && (

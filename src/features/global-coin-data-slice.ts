@@ -28,7 +28,7 @@ export const fetchGlobalCoinData = createAsyncThunk("globalCoinData", async () =
     });
 
     const normalizedResponse = toCamelCase(response.data) as GlobalCoinDataRootObject;
-    cacheWithExpiry("globalCoinData", normalizedResponse, 300000); // Cache Period: 1 hour
+    cacheWithExpiry("globalCoinData", normalizedResponse, 1200000); // Cache Period: 20 minutes
 
     return normalizedResponse.data as GlobalCoinData;
   }
