@@ -14,6 +14,7 @@ export const API_CONFIG: ApiConfigFunction = (server: "coinGecko" | "etherscan")
           "X-Frame-Options": "DENY",
           "X-Content-Type-Options": "nosniff",
           "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+          "Access-Control-Allow-Origin": "*",
         },
       };
     case "etherscan":
