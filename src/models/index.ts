@@ -1,6 +1,8 @@
 import {
+  AvailableDayRanges as AvailableDayRangesInterface,
   CoinMarketChart as CoinMarketChartInterface,
   CoinMarketChartList as CoinMarketChartListInterface,
+  DominanceChartList as DominanceChartListInterface,
 } from "@/src/models/api/coin-market-chart.model";
 import { GenericState as GenericStateInterface } from "@/src/models/common/generic-state";
 import { AppState as AppStateInterface } from "@/src/models/globals/app-state";
@@ -21,6 +23,8 @@ import {
 import { Page as PageInterface, RootModule as RootModuleInterface } from "./common/root-module";
 
 export type AppState = AppStateInterface;
+export type AvailableDayRanges = AvailableDayRangesInterface;
+export type DominanceChartList = DominanceChartListInterface;
 export type GenericState<T> = GenericStateInterface<T>;
 export type Coin = CoinInterface;
 export type GasOracle = GasOracleInterface;

@@ -5,8 +5,8 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 import { getTodayDate } from "@/common/helpers/date-handler";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { CorrelationHeatmap } from "@/components/screens/molecules/correlation-heatmap-chart";
-import { fetchCoins, selectCoins } from "@/features/coinsSlice";
-import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@/features/marketChartSlice";
+import { fetchCoins, selectCoins } from "@/features/coins-slice";
+import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@/features/market-chart-slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";
 

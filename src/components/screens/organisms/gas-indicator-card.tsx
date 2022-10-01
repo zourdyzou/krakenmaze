@@ -8,7 +8,7 @@ import { roundDecimals } from "@/common/helpers/round-decimals";
 import { GasLimitTextField } from "@/components/screens/atoms/gas-limit-text-field";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { GasIndicatorGroup } from "@/components/screens/molecules/gas-indicator-group";
-import { selectCoins } from "@/features/coinsSlice";
+import { selectCoins } from "@/features/coins-slice";
 import { fetchGasOracle, selectGasOracle } from "@/features/gas-oracle-slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";

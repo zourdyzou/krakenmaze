@@ -6,8 +6,8 @@ import { ApexOptions } from "apexcharts";
 
 import { pearsonCorrelation } from "@/common/helpers/pearson-correlation-calculation";
 import { roundDecimals } from "@/common/helpers/round-decimals";
-import { selectCoins } from "@/features/coinsSlice";
-import { selectCoinMarketChartList } from "@/features/marketChartSlice";
+import { selectCoins } from "@/features/coins-slice";
+import { selectCoinMarketChartList } from "@/features/market-chart-slice";
 import { useAppSelector } from "@/hooks/*";
 import { Coin, CoinMarketChart } from "@/src/models";
 

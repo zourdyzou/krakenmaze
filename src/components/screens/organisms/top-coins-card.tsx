@@ -6,8 +6,8 @@ import { getTodayDate } from "@/common/helpers/date-handler";
 import { ListItemSkeleton } from "@/components/screens/atoms/list-item-skeleton";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { CoinItem } from "@/components/screens/molecules/coin-item";
-import { fetchCoins, selectCoins } from "@/features/coinsSlice";
-import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@/features/marketChartSlice";
+import { fetchCoins, selectCoins } from "@/features/coins-slice";
+import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@/features/market-chart-slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";
 

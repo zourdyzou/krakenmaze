@@ -6,9 +6,9 @@ import { coinGecko as API } from "@/common/endpoints";
 import { cacheWithExpiry, retrieveCache } from "@/common/helpers/cache-storage-handler";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
-import { CoinMarketChartList, GenericState } from "@/src/models";
+import { DominanceChartList, GenericState } from "@/src/models";
 
-const initialState: GenericState<CoinMarketChartList> = {
+const initialState: GenericState<DominanceChartList> = {
   value: {},
   status: "IDLE",
   param: "key",
@@ -17,10 +17,10 @@ const initialState: GenericState<CoinMarketChartList> = {
 export const fetchDominanceChartList = createAsyncThunk("dominanceChartList", async (coinIdList: string[]) => {
   const canceler = axios.CancelToken.source();
 
-  const cachedData: CoinMarketChartList | null = retrieveCache("dominanceChart");
+  const cachedData: DominanceChartList | null = retrieveCache("dominanceChart");
 
   if (cachedData) {
-    return cachedData as CoinMarketChartList;
+    return cachedData as DominanceChartList;
   } else {
     const normalizedResponse = {} as any;
 
@@ -36,11 +36,11 @@ export const fetchDominanceChartList = createAsyncThunk("dominanceChartList", as
 
     cacheWithExpiry("dominanceChart", normalizedResponse, 900000); // Cache Period: 15 minutes
 
-    return normalizedResponse as CoinMarketChartList;
+    return normalizedResponse as DominanceChartList;
   }
 });
 
-const dominanceChartListSlice: Slice<GenericState<CoinMarketChartList>, {}, "dominanceChartList"> = createSlice({
+const dominanceChartListSlice: Slice<GenericState<DominanceChartList>, {}, "dominanceChartList"> = createSlice({
   name: "dominanceChartList",
   initialState,
   reducers: {},
@@ -60,7 +60,7 @@ const dominanceChartListSlice: Slice<GenericState<CoinMarketChartList>, {}, "dom
   },
 });
 
-export const selectDominanceChartList: (state: RootState) => GenericState<CoinMarketChartList> = (state: RootState) =>
+export const selectDominanceChartList: (state: RootState) => GenericState<DominanceChartList> = (state: RootState) =>
   state.dominanceChartList;
 
 export default dominanceChartListSlice.reducer;

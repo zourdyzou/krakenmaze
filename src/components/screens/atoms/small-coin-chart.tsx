@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "@material-ui/core";
 import { Area, AreaChart, ResponsiveContainer, YAxis } from "recharts";
 
-import { selectCoinMarketChartList } from "@/features/marketChartSlice";
+import { selectCoinMarketChartList } from "@/features/market-chart-slice";
 import { useAppSelector } from "@/hooks/*";
 import { Coin, CoinMarketChart } from "@/src/models";
 

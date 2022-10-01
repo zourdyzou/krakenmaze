@@ -7,7 +7,7 @@ import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 
 
 import { shortenNumber } from "@/common/helpers/shorten-number";
 import { useWindowSize } from "@/common/hooks/use-window-size";
-import { selectCoins } from "@/features/coinsSlice";
+import { selectCoins } from "@/features/coins-slice";
 import { selectGlobalCoinData } from "@/features/global-coin-data-slice";
 import { useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";

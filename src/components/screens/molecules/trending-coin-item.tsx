@@ -3,7 +3,7 @@ import { Avatar, ListItem, ListItemAvatar, ListItemText, Typography } from "@mat
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { roundDecimals } from "@/common/helpers/round-decimals";
-import { selectCoins } from "@/features/coinsSlice";
+import { selectCoins } from "@/features/coins-slice";
 import { useAppSelector } from "@/hooks/*";
 import { Coin, TrendingCoin } from "@/src/models";
 

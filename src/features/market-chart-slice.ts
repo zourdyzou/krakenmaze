@@ -7,37 +7,58 @@ import { cacheWithExpiry, retrieveCache } from "@/common/helpers/cache-storage-h
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
 
-import { CoinMarketChartList, GenericState } from "../models";
+import { AvailableDayRanges, CoinMarketChartList, GenericState } from "../models";
 
 const initialState: GenericState<CoinMarketChartList> = {
-  value: {},
+  value: {
+    1: {},
+    14: {},
+    30: {},
+    max: {},
+  },
   status: "IDLE",
   param: "key",
 };
 
-export const fetchCoinMarketChartList = createAsyncThunk("coinMarketChartList", async (coinIdList: string[]) => {
-  const canceler = axios.CancelToken.source();
+interface Params {
+  coinIdList: string[];
+  dayRange: AvailableDayRanges;
+}
 
-  const cachedData: CoinMarketChartList | null = retrieveCache("coinMarketChartList");
+export const fetchCoinMarketChartList = createAsyncThunk("coinMarketChartList", async (params: Params, thunk) => {
+  const canceler = axios.CancelToken.source();
+  const state: any = thunk.getState();
+
+  const cachedData: CoinMarketChartList | null = retrieveCache(`coinMarketChartList-dayRange${params.dayRange}`);
 
   if (cachedData) {
-    return cachedData as CoinMarketChartList;
+    return {
+      ...state.coinsMarketChartList.value,
+      [params.dayRange]: cachedData,
+    };
   } else {
     const normalizeResponseData = {} as any;
 
-    for (let i = 0; i < coinIdList.length; i++) {
+    for (let i = 0; i < params.coinIdList.length; i++) {
       const response = await axios.request({
         ...config("coinGecko"),
-        url: API.coinMarketChart(coinIdList[i], 1),
+        url: API.coinMarketChart(params.coinIdList[i], params.dayRange),
         cancelToken: canceler.token,
       });
 
-      normalizeResponseData[coinIdList[i]] = toCamelCase(response.data);
+      normalizeResponseData[params.coinIdList[i]] = toCamelCase(response.data);
     }
 
-    cacheWithExpiry("coinMarketChartList", normalizeResponseData, 3600000); // Cache Period: 1 hour
+    cacheWithExpiry(
+      `coinMarketChartList-dayRange${params.dayRange}`,
+      normalizeResponseData,
+      params.dayRange > 1 ? 8.64e7 : 3600000 // Cache Period: 1 day or 1 hour
+    );
 
-    return normalizeResponseData as CoinMarketChartList;
+    return {
+      ...state.coinMarketChartList.value,
+      [params.dayRange]: normalizeResponseData,
+    } as CoinMarketChartList;
   }
 });
 

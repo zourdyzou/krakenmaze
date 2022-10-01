@@ -5,7 +5,7 @@ import { Skeleton } from "@material-ui/lab";
 
 import { CoinDominanceChart } from "@/components/screens/atoms/coin-dominance-chart";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
-import { selectCoins } from "@/features/coinsSlice";
+import { selectCoins } from "@/features/coins-slice";
 import { fetchDominanceChartList, selectDominanceChartList } from "@/features/dominance-chart-list-slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";
