@@ -49,7 +49,7 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
   const coins = useAppSelector(selectCoins);
   const coinMarketChartList = useAppSelector(selectCoinMarketChartList);
 
-  const top15Ids = Object.keys(coinMarketChartList.value);
+  const top15Ids = Object.keys(coinMarketChartList.value[30]);
 
   const formatRawData = (dataKey: keyof CoinMarketChart) => {
     const correlationHeatmapSeries: DataFormat[] = [];
@@ -58,7 +58,7 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
     top15Ids.forEach((coinId: string) => {
       const chartData: number[] = [];
 
-      coinMarketChartList.value[coinId][dataKey].forEach((dataPair: [number, number]) => {
+      coinMarketChartList.value[30][coinId][dataKey].forEach((dataPair: [number, number]) => {
         chartData.push(dataPair[1]);
       });
 
@@ -84,7 +84,7 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
   // in a simple way
   const formatRawDataSimple = (coinId: string) => {
     const chartData: number[] = [];
-    coinMarketChartList.value[coinId]["prices"].forEach((dataPair: [number, number]) => {
+    coinMarketChartList.value[30][coinId]["prices"].forEach((dataPair: [number, number]) => {
       chartData.push(dataPair[1]);
     });
 
@@ -95,7 +95,7 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
 
   const options: ApexOptions = {
     chart: {
-      id: "Cryptoscapes Correlation Heatmap",
+      id: "ArkscapesCorrelationHeatmap",
       height: 700,
       fontFamily: "Gilroy, sans-serif",
       type: "heatmap",

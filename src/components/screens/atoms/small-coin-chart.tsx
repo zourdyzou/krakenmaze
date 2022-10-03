@@ -28,7 +28,7 @@ export const SmallCoinChart: React.FunctionComponent<Props> = ({ coin, dataKey }
     //   formattedData.push({ date: dataPair[0], value: dataPair[1] });
     // }
 
-    coinMarketChartList.value[coinId][dataKey].forEach((dataPair: [number, number]) => {
+    coinMarketChartList.value[1][coinId][dataKey].forEach((dataPair: [number, number]) => {
       formattedData.push({ date: dataPair[0], value: dataPair[1] });
     });
 
@@ -37,7 +37,7 @@ export const SmallCoinChart: React.FunctionComponent<Props> = ({ coin, dataKey }
 
   return (
     <>
-      {coinMarketChartList.value[coin.id] && (
+      {coinMarketChartList.value[1][coin.id] && (
         <ResponsiveContainer height="100%" width="100%">
           <AreaChart data={formatRawData(coin.id, dataKey)} margin={{ top: 0, right: 8, left: 16, bottom: 0 }}>
             <defs>
