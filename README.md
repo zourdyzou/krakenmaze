@@ -1,4 +1,4 @@
-<img src='https://socialify.git.ci/zourdyzou/krakenmaze/image?description=1&font=Source%20Code%20Pro&forks=1&language=1&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&stargazers=1&theme=Dark' />
+<img src='https://socialify.git.ci/zourdyzou/arkscapes/image?description=1&font=Source%20Code%20Pro&issues=1&language=1&name=1&owner=1&pattern=Charlie%20Brown&pulls=1&theme=Dark' />
 
 ## 🎪 Features
 
@@ -42,7 +42,8 @@ The information and data used in Cryptoscapes is provided kindly by the followin
 ### Directory Structure
 
 - [`.github`](.github) — GitHub configuration including the CI workflow.<br>
-- [`.husky`](.husky) — Husky configuration and hooks.<br>
+- [`webpack`](./webpack) — Webpack configuration and bundling rules to compile it as a static files.<br>
+- [`test`](./test) — Test rules and configuration: TDD.<br>
 - [`public`](./public) — Static assets such as robots.txt, images, and favicon.<br>
 - [`src`](./src) — Application source code, including pages, components, styles.
 
@@ -75,7 +76,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## 🎃 Recent Development Preview (Updated every 24-h)
 
-![Krakenmaze-Cryptocurrency-Prices-Charts-and-Market-Overview](https://user-images.githubusercontent.com/69587933/192123379-517aa931-1813-4403-9771-fa3acc1dc4cc.png)
+![Arkscapes-Cryptocurrency-Prices-Charts-and-Market-Overview](https://user-images.githubusercontent.com/69587933/192398288-be68436d-9729-4564-bd9f-60444a68aba0.png)
+
 
 
 
