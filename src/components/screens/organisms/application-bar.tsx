@@ -6,6 +6,7 @@ import { GitHub } from "@material-ui/icons";
 
 import Logo from "@/assets/images/logo.svg";
 import { appBarHeight, drawerWidth } from "@/common/constants";
+import { RootState } from "@/components/app/store";
 import { IconComponent } from "@/components/icons";
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -51,7 +52,7 @@ export const ApplicationBar: React.FunctionComponent = () => {
   const theme = useTheme();
   const store = useStore();
 
-  const [allStates, setAllStates] = useState<any>(store.getState());
+  const [allStates, setAllStates] = useState<RootState>(store.getState() as RootState);
   const [globalLoading, setGlobalLoading] = useState<boolean>(false);
 
   store.subscribe(() => {

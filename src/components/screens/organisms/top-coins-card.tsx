@@ -37,10 +37,15 @@ export const TopCoinsCard: React.FunctionComponent = () => {
   useEffect(() => {
     if (
       top15.length === 15 &&
-      Object.keys(coinMarketChartLists.value).length === 0 &&
+      Object.keys(coinMarketChartLists.value[1]).length === 0 &&
       coinMarketChartLists.status === "IDLE"
     ) {
-      dispatch(fetchCoinMarketChartList(top15.map((coin: Coin) => coin.id)));
+      dispatch(
+        fetchCoinMarketChartList({
+          coinIdList: top15.map((coin: Coin) => coin.id),
+          dayRange: 1,
+        })
+      );
     }
   }, [dispatch, top15, coinMarketChartLists.value, coinMarketChartLists.status]);
 

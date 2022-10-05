@@ -1,4 +1,7 @@
-import { AxiosRequestConfig } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import rateLimit from "axios-rate-limit";
+
+export const http = rateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 1500 });
 
 type ApiConfigFunction = (server: "coinGecko" | "etherscan") => AxiosRequestConfig;
 

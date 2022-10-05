@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, Slice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-import { API_CONFIG as config } from "@/common/constants";
+import { API_CONFIG as config, http } from "@/common/constants";
 import { coinGecko as API } from "@/common/endpoints";
 import { cacheWithExpiry, retrieveCache } from "@/common/helpers/cache-storage-handler";
 import { toCamelCase } from "@/common/helpers/case-transformer";
@@ -25,42 +25,45 @@ interface Params {
   dayRange: AvailableDayRanges;
 }
 
-export const fetchCoinMarketChartList = createAsyncThunk("coinMarketChartList", async (params: Params, thunk) => {
-  const canceler = axios.CancelToken.source();
-  const state: any = thunk.getState();
+export const fetchCoinMarketChartList = createAsyncThunk(
+  "coinMarketChartList",
+  async (params: Params, { getState }) => {
+    const canceler = axios.CancelToken.source();
+    const state = getState() as RootState;
 
-  const cachedData: CoinMarketChartList | null = retrieveCache(`coinMarketChartList-dayRange${params.dayRange}`);
+    const cachedData: CoinMarketChartList | null = retrieveCache(`coinMarketChartList-dayRange${params.dayRange}`);
 
-  if (cachedData) {
-    return {
-      ...state.coinsMarketChartList.value,
-      [params.dayRange]: cachedData,
-    };
-  } else {
-    const normalizeResponseData = {} as any;
+    if (cachedData) {
+      return {
+        ...state.coinsMarketChartList.value,
+        [params.dayRange]: cachedData,
+      };
+    } else {
+      const normalizeResponseData = {} as any;
 
-    for (let i = 0; i < params.coinIdList.length; i++) {
-      const response = await axios.request({
-        ...config("coinGecko"),
-        url: API.coinMarketChart(params.coinIdList[i], params.dayRange),
-        cancelToken: canceler.token,
-      });
+      for (let i = 0; i < params.coinIdList.length; i++) {
+        const response = await http.request({
+          ...config("coinGecko"),
+          url: API.coinMarketChart(params.coinIdList[i], params.dayRange),
+          cancelToken: canceler.token,
+        });
 
-      normalizeResponseData[params.coinIdList[i]] = toCamelCase(response.data);
+        normalizeResponseData[params.coinIdList[i]] = toCamelCase(response.data);
+      }
+
+      cacheWithExpiry(
+        `coinMarketChartList-dayRange${params.dayRange}`,
+        normalizeResponseData,
+        params.dayRange > 1 ? 8.64e7 : 3600000 // Cache Period: 1 day or 1 hour
+      );
+
+      return {
+        ...state.coinsMarketChartList.value,
+        [params.dayRange]: normalizeResponseData,
+      } as CoinMarketChartList;
     }
-
-    cacheWithExpiry(
-      `coinMarketChartList-dayRange${params.dayRange}`,
-      normalizeResponseData,
-      params.dayRange > 1 ? 8.64e7 : 3600000 // Cache Period: 1 day or 1 hour
-    );
-
-    return {
-      ...state.coinMarketChartList.value,
-      [params.dayRange]: normalizeResponseData,
-    } as CoinMarketChartList;
   }
-});
+);
 
 const coinsMarketChartListSlice: Slice<GenericState<CoinMarketChartList>, {}, "coinMarketChartList"> = createSlice({
   name: "coinMarketChartList",
