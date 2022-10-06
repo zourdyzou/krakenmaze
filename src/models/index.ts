@@ -2,12 +2,13 @@ import {
   AvailableDayRanges as AvailableDayRangesInterface,
   CoinMarketChart as CoinMarketChartInterface,
   CoinMarketChartList as CoinMarketChartListInterface,
+  CoinMarketChartListState as CoinMarketChartListStateInterface,
   DominanceChartList as DominanceChartListInterface,
-} from "@/src/models/api/coin-market-chart.model";
+} from "@/src/models/api/coin-market-chart";
 import { GenericState as GenericStateInterface } from "@/src/models/common/generic-state";
 import { AppState as AppStateInterface } from "@/src/models/globals/app-state";
 
-import { Coin as CoinInterface } from "./api/coin.model";
+import { Coin as CoinInterface } from "./api/coin";
 import {
   GasOracle as GasOracleInterface,
   GasOracleRootObject as GasOracleRootObjectInterface,
@@ -35,6 +36,7 @@ export type CoinMarketChartList = CoinMarketChartListInterface;
 export type TotalMarketCap = TotalMarketCapInterface;
 export type TotalVolume = TotalVolumeInterface;
 export type MarketCapPercentage = MarketCapPercentageInterface;
+export type CoinMarketChartListState = CoinMarketChartListStateInterface;
 export type Page = PageInterface;
 export type RootModule = RootModuleInterface;
 export type GlobalCoinData = GlobalCoinDataInterface;

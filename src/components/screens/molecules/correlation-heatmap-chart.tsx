@@ -49,7 +49,7 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
   const coins = useAppSelector(selectCoins);
   const coinMarketChartList = useAppSelector(selectCoinMarketChartList);
 
-  const top15Ids = Object.keys(coinMarketChartList.value[30]);
+  const top15Ids = Object.keys(coinMarketChartList.value[coinMarketChartList.selectedDayRange]);
 
   const formatRawData = (dataKey: keyof CoinMarketChart) => {
     const correlationHeatmapSeries: DataFormat[] = [];
@@ -58,9 +58,11 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
     top15Ids.forEach((coinId: string) => {
       const chartData: number[] = [];
 
-      coinMarketChartList.value[30][coinId][dataKey].forEach((dataPair: [number, number]) => {
-        chartData.push(dataPair[1]);
-      });
+      coinMarketChartList.value[coinMarketChartList.selectedDayRange][coinId][dataKey].forEach(
+        (dataPair: [number, number]) => {
+          chartData.push(dataPair[1]);
+        }
+      );
 
       fullSeries.push(chartData);
     });
@@ -81,6 +83,8 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
     return correlationHeatmapSeries;
   };
 
+  const data = formatRawData("prices");
+
   // in a simple way
   const formatRawDataSimple = (coinId: string) => {
     const chartData: number[] = [];
@@ -91,12 +95,12 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
     return chartData;
   };
 
-  // console.log(pearsonCorrelation([formatRawDataSimple('usd-coin'), formatRawDataSimple('bitcoin')], 0, 1))
+  // console.log(pearsonCorrelation([formatRawDataSimple('usd-coin'), formatRawDataSimple('bitcoin')], 0, 1)) <-- FOR TESTING & DEBUGGING PURPOSE
 
   const options: ApexOptions = {
     chart: {
       id: "ArkscapesCorrelationHeatmap",
-      height: 700,
+      height: "100%",
       fontFamily: "Gilroy, sans-serif",
       type: "heatmap",
       background: theme.palette.card.default,
@@ -149,12 +153,12 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
           ranges: [
             {
               from: -100,
-              to: 19.999999999,
-              name: "Almost No Correlation (<20)",
+              to: 9.999999999,
+              name: "Almost No Correlation (<10)",
               color: theme.palette.success.main,
             },
             {
-              from: 20,
+              from: 10,
               to: 69.999999999,
               name: "Medium Correlation (<70)",
               color: theme.palette.info.main,
@@ -179,7 +183,7 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
 
   return (
     <div className={classes.container}>
-      <ReactApexChart options={options} series={formatRawData("prices")} type="heatmap" height={700} />
+      <ReactApexChart options={options} series={data} type="heatmap" height="100%" />
     </div>
   );
 };
