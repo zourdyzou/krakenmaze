@@ -5,8 +5,8 @@ import { DashboardRounded, DonutLargeRounded, PieChartRounded } from "@material-
 import { Skeleton, ToggleButton, ToggleButtonGroup } from "@material-ui/lab";
 
 import { shortenNumber } from "@/common/helpers/shorten-number";
-import { GlobalCoinDataDonutChart as MarketCapDonutChart } from "@/components/screens/atoms/market-cap-donut-chart";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
+import { GlobalCoinDataDonutChart as MarketCapDonutChart } from "@/components/screens/molecules/market-cap-donut-chart";
 import { MarketCapTreemap } from "@/components/screens/molecules/market-cap-treemap";
 import { selectGlobalCoinData } from "@/features/global-coin-data-slice";
 import { useAppSelector } from "@/hooks/*";

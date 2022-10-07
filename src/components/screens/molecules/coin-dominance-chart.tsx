@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
-import { Skeleton } from "@material-ui/lab";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { convertTimestamp } from "@/common/helpers/date-handler";
 import { shortenNumber } from "@/common/helpers/shorten-number";
+import { ChartSkeleton } from "@/components/screens/atoms/chart-skeleton-loader";
 import { selectDominanceChartList } from "@/features/dominance-chart-list-slice";
 import { useAppSelector } from "@/hooks/*";
 import { Coin, CoinMarketChart } from "@/src/models";
@@ -22,10 +22,6 @@ interface Props {
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-  chartSkeleton: {
-    margin: "0 16px",
-    transform: "scale(1, 0.8)",
-  },
   customTooltip: {
     borderRadius: 12,
     padding: 12,
@@ -65,13 +61,7 @@ export const CoinDominanceChart: React.FunctionComponent<Props> = ({ coinList, d
   return (
     <>
       {coinList.length !== 2 || !dominanceChartList.value[top1.id] || !dominanceChartList.value[top2.id] ? (
-        <Skeleton
-          animation="wave"
-          height="100%"
-          id="titleSkeleton"
-          style={{ margin: "0 20px" }}
-          className={classes.chartSkeleton}
-        />
+        <ChartSkeleton />
       ) : (
         <ResponsiveContainer height="100%" width="100%">
           <AreaChart

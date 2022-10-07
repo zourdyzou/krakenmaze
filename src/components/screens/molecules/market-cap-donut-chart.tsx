@@ -1,21 +1,17 @@
 import React from "react";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import { Skeleton } from "@material-ui/lab";
 import chroma from "chroma-js";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 import { roundDecimals } from "@/common/helpers/round-decimals";
 import { shortenNumber } from "@/common/helpers/shorten-number";
+import { DonutSkeleton } from "@/components/screens/atoms/donut-skeleton-loader";
 import { selectCoins } from "@/features/coins-slice";
 import { selectGlobalCoinData } from "@/features/global-coin-data-slice";
 import { useAppSelector } from "@/hooks/*";
 import { Coin } from "@/src/models";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  chartSkeleton: {
-    margin: "0 16px",
-    transform: "scale(1, 0.8)",
-  },
   responsiveContainer: {
     "& .recharts-default-tooltip": {
       borderRadius: 12,
@@ -70,7 +66,7 @@ export const GlobalCoinDataDonutChart: React.FunctionComponent<Props> = ({ coins
   return (
     <>
       {coins.value.length === 0 || coins.status === "LOADING" || globalCoinData.value === null ? (
-        <Skeleton animation="wave" height="100%" className={classes.chartSkeleton} />
+        <DonutSkeleton />
       ) : (
         <ResponsiveContainer height="100%" width="100%" className={classes.responsiveContainer}>
           <PieChart>

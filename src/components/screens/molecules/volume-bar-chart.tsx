@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
-import { Skeleton } from "@material-ui/lab";
 import chroma from "chroma-js";
 import { Bar, BarChart, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 import { shortenNumber } from "@/common/helpers/shorten-number";
 import { useWindowSize } from "@/common/hooks/use-window-size";
+import { ChartSkeleton } from "@/components/screens/atoms/chart-skeleton-loader";
 import { selectCoins } from "@/features/coins-slice";
 import { selectGlobalCoinData } from "@/features/global-coin-data-slice";
 import { useAppSelector } from "@/hooks/*";
@@ -23,10 +23,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         fill: theme.palette.card.paper,
       },
     },
-  },
-  chartSkeleton: {
-    margin: "0 16px",
-    transform: "scale(1, 0.8)",
   },
   customTooltip: {
     borderRadius: 12,
@@ -73,7 +69,7 @@ export const VolumeBarChart: React.FC = () => {
   return (
     <>
       {coins.value.length === 0 || coins.status === "LOADING" || globalCoinData.value === null ? (
-        <Skeleton animation="wave" height="100%" className={classes.chartSkeleton} />
+        <ChartSkeleton />
       ) : (
         <Box className={classes.container}>
           <ResponsiveContainer height="100%" width="100%">

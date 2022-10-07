@@ -3,10 +3,10 @@ import { CardHeader, Divider } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { getTodayDate } from "@/common/helpers/date-handler";
-import { GridIconLoadingState } from "@/components/screens/atoms/grid-icon-loading-state";
 import { HeatmapOptionToggleGroup } from "@/components/screens/atoms/heatmap-option-toggle";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
-import { CorrelationHeatmap } from "@/components/screens/molecules/correlation-heatmap-chart";
+import { CorrelationHeatmapSkeleton } from "@/components/screens/molecules/correlation-heatmap-skeleton";
+import { CorrelationHeatmap } from "@/components/screens/organisms/correlation-heatmap-chart";
 import { fetchCoins, selectCoins } from "@/features/coins-slice";
 import { fetchCoinMarketChartList, selectCoinMarketChartList } from "@/features/market-chart-slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/*";
@@ -63,7 +63,7 @@ export const CoinCorrelationCard: React.FC = () => {
         {top15.length === 0 ||
         coins.status === "LOADING" ||
         Object.keys(coinMarketChartList.value[coinMarketChartList.selectedDayRange]).length === 0 ? (
-          <GridIconLoadingState />
+          <CorrelationHeatmapSkeleton />
         ) : (
           <CorrelationHeatmap />
         )}
