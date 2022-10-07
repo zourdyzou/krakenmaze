@@ -7,21 +7,25 @@ import { cacheWithExpiry, retrieveCache } from "@/common/helpers/cache-storage-h
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
 
-import { AvailableDayRanges, CoinMarketChartList, CoinMarketChartListState } from "../models";
+import { AvailableDayRanges, CoinMarketChart, CoinMarketChartList, CoinMarketChartListState } from "../models";
 
 interface Reducers extends SliceCaseReducers<CoinMarketChartListState> {
   setSelectedDayRange: (state: CoinMarketChartListState, action: PayloadAction<AvailableDayRanges>) => void;
+  setSelectedDataType: (state: CoinMarketChartListState, action: PayloadAction<keyof CoinMarketChart>) => void;
 }
 
 const initialState: CoinMarketChartListState = {
   value: {
     1: {},
-    14: {},
+    7: {},
     30: {},
-    max: {},
+    90: {},
+    365: {},
+    730: {},
   },
   status: "IDLE",
   selectedDayRange: 30,
+  selectedDataType: "prices",
   param: "key",
 };
 
@@ -77,6 +81,9 @@ const coinsMarketChartListSlice: Slice<CoinMarketChartListState, Reducers, "coin
     setSelectedDayRange: (state: CoinMarketChartListState, action: PayloadAction<AvailableDayRanges>) => {
       state.selectedDayRange = action.payload;
     },
+    setSelectedDataType: (state: CoinMarketChartListState, action: PayloadAction<keyof CoinMarketChart>) => {
+      state.selectedDataType = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -97,6 +104,6 @@ const coinsMarketChartListSlice: Slice<CoinMarketChartListState, Reducers, "coin
 export const selectCoinMarketChartList: (state: RootState) => CoinMarketChartListState = (state: RootState) =>
   state.coinsMarketChartList;
 
-export const { setSelectedDayRange } = coinsMarketChartListSlice.actions;
+export const { setSelectedDayRange, setSelectedDataType } = coinsMarketChartListSlice.actions;
 
 export default coinsMarketChartListSlice.reducer;

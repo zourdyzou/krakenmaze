@@ -3,8 +3,8 @@ import { CardHeader, Divider } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 import { getTodayDate } from "@/common/helpers/date-handler";
-import { DayRangeSelect } from "@/components/screens/atoms/day-range-select";
 import { GridIconLoadingState } from "@/components/screens/atoms/grid-icon-loading-state";
+import { HeatmapOptionToggleGroup } from "@/components/screens/atoms/heatmap-option-toggle";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { CorrelationHeatmap } from "@/components/screens/molecules/correlation-heatmap-chart";
 import { fetchCoins, selectCoins } from "@/features/coins-slice";
@@ -52,11 +52,11 @@ export const CoinCorrelationCard: React.FC = () => {
   return (
     <CardLayout>
       <CardHeader
-        title="Coin Correlation Heatmap"
+        title="Trend Correlations"
         subheader={`Last Updated: ${getTodayDate()}`}
         titleTypographyProps={{ variant: "h6" }}
         subheaderTypographyProps={{ variant: "caption" }}
-        action={<DayRangeSelect />}
+        action={<HeatmapOptionToggleGroup />}
       />
       <Divider />
       <div className={classes.chartWrapper}>

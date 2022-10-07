@@ -83,7 +83,7 @@ export const CorrelationHeatmap: React.FunctionComponent = () => {
     return correlationHeatmapSeries;
   };
 
-  const data = formatRawData("prices");
+  const data = formatRawData(coinMarketChartList.selectedDataType);
 
   // in a simple way
   const formatRawDataSimple = (coinId: string) => {
