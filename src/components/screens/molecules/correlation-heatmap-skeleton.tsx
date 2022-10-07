@@ -4,7 +4,7 @@ import { Box } from "@material-ui/core";
 import { makeStyles, Theme, useTheme } from "@material-ui/core/styles";
 import { ApexOptions } from "apexcharts";
 
-import { GridIconLoadingState } from "@/components/screens/atoms/grid-icon-loading-state";
+import { HeatmapLoadingProgress } from "@/components/screens/atoms/heatmap-loading-progress";
 import { Overlay } from "@/components/screens/atoms/overlay";
 import { selectCoins } from "@/features/coins-slice";
 import { useAppSelector } from "@/hooks/*";
@@ -83,7 +83,7 @@ export const CorrelationHeatmapSkeleton: React.FC = () => {
   });
 
   return (
-    <Overlay loadingIcon={<GridIconLoadingState />}>
+    <Overlay loadingIcon={<HeatmapLoadingProgress />}>
       <Box className={classes.container}>
         <ReactApexChart options={options} series={data} type="heatmap" height="100%" />
       </Box>
