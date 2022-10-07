@@ -3,8 +3,8 @@ import { CardHeader } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Skeleton } from "@material-ui/lab";
 
-import { CoinDominanceChart } from "@/components/screens/atoms/coin-dominance-chart";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
+import { CoinDominanceChart } from "@/components/screens/molecules/coin-dominance-chart";
 import { selectCoins } from "@/features/coins-slice";
 import { fetchDominanceChartList, selectDominanceChartList } from "@/features/dominance-chart-list-slice";
 import { useAppDispatch, useAppSelector } from "@/hooks/*";

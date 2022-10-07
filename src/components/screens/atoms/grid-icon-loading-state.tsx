@@ -3,14 +3,6 @@ import { Box, Typography } from "@material-ui/core";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    height: "100%",
-  },
   gridIconAnimation: {
     width: 80,
     height: 80,
@@ -71,7 +63,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   textEllipsis: {
-    width: 187,
+    width: 218,
     marginLeft: 20,
     "&:after": {
       overflow: "hidden",
@@ -104,7 +96,7 @@ export const GridIconLoadingState: React.FunctionComponent = () => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.container}>
+    <>
       <div className={classes.gridIconAnimation}>
         <div />
         <div />
@@ -118,9 +110,9 @@ export const GridIconLoadingState: React.FunctionComponent = () => {
       </div>
       <Box>
         <Typography variant="h6" color="textSecondary" className={classes.textEllipsis}>
-          Loading Heatmap
+          Generating Heatmap
         </Typography>
       </Box>
-    </Box>
+    </>
   );
 };
