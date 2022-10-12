@@ -13,3 +13,7 @@ export const coinGecko = {
 export const etherscan = {
   gasOracle: `/api?module=gastracker&action=gasoracle&apikey=${ETHERSCAN_API_KEY}`,
 };
+
+export const alternativeMe = {
+  fearGreedIndex: (days: AvailableDayRanges) => `/fng/?limit=${days}`,
+};

@@ -10,6 +10,11 @@ import { AppState as AppStateInterface } from "@/src/models/globals/app-state";
 
 import { Coin as CoinInterface } from "./api/coin";
 import {
+  FearGreedIndex as FearGreedIndexInterface,
+  FearGreedIndexMetadata as FearGreedIndexMetadataInterface,
+  FearGreedIndexRootObject as FearGreedIndexRootObjectInterface,
+} from "./api/fear-greed-index";
+import {
   GasOracle as GasOracleInterface,
   GasOracleRootObject as GasOracleRootObjectInterface,
   GasOracleState as GasOracleStateInterface,
@@ -37,6 +42,9 @@ export type TotalMarketCap = TotalMarketCapInterface;
 export type TotalVolume = TotalVolumeInterface;
 export type MarketCapPercentage = MarketCapPercentageInterface;
 export type CoinMarketChartListState = CoinMarketChartListStateInterface;
+export type FearGreedIndex = FearGreedIndexInterface;
+export type FearGreedIndexMetadata = FearGreedIndexMetadataInterface;
+export type FearGreedIndexRootObject = FearGreedIndexRootObjectInterface;
 export type Page = PageInterface;
 export type RootModule = RootModuleInterface;
 export type GlobalCoinData = GlobalCoinDataInterface;

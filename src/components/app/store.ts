@@ -3,6 +3,7 @@ import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import appStateReducer from "@/features/app-state-slice";
 import coinsReducer from "@/features/coins-slice";
 import dominanceChartListReducer from "@/features/dominance-chart-list-slice";
+import fearGreedIndexReducer from "@/features/fear-greed-index-slice";
 import gasOracleReducer from "@/features/gas-oracle-slice";
 import globalCoinDataReducer from "@/features/global-coin-data-slice";
 import coinsMarketChartListReducer from "@/features/market-chart-slice";
@@ -17,6 +18,7 @@ export const store = configureStore({
     gasOracle: gasOracleReducer,
     trendingCoins: trendingCoinsReducer,
     globalCoinData: globalCoinDataReducer,
+    fearGreedIndex: fearGreedIndexReducer,
   },
   devTools: true,
 });

@@ -22,6 +22,7 @@ const initialState: CoinMarketChartListState = {
     90: {},
     365: {},
     730: {},
+    max: {},
   },
   status: "IDLE",
   selectedDayRange: 30,
