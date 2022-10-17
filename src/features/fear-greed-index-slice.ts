@@ -5,10 +5,11 @@ import { API_CONFIG as config } from "@/common/constants";
 import { alternativeMe as API } from "@/common/endpoints";
 import { toCamelCase } from "@/common/helpers/case-transformer";
 import { RootState } from "@/components/app/store";
-import { FearGreedIndex, FearGreedIndexRootObject, GenericState } from "@/src/models";
+import { FearGreedIndex, FearGreedIndexRootObject, FearGreedIndexState } from "@/src/models";
 
-const initialState: GenericState<FearGreedIndex[]> = {
+const initialState: FearGreedIndexState = {
   value: [],
+  today: null,
   status: "IDLE",
 };
 
@@ -17,7 +18,7 @@ export const fetchFearGreedIndex = createAsyncThunk("fearGreedIndex", async () =
 
   const response = await axios.request({
     ...config("alternative.me"),
-    url: API.fearGreedIndex(7),
+    url: API.fearGreedIndex(30),
     cancelToken: canceler.token,
   });
 
@@ -26,7 +27,7 @@ export const fetchFearGreedIndex = createAsyncThunk("fearGreedIndex", async () =
   return normalizedResponse.data as FearGreedIndex[];
 });
 
-const fearGreedIndexSlice: Slice<GenericState<FearGreedIndex[]>, {}, "fearGreedIndex"> = createSlice({
+const fearGreedIndexSlice: Slice<FearGreedIndexState, {}, "fearGreedIndex"> = createSlice({
   name: "fearGreedIndex",
   initialState,
   reducers: {},
@@ -38,6 +39,7 @@ const fearGreedIndexSlice: Slice<GenericState<FearGreedIndex[]>, {}, "fearGreedI
       .addCase(fetchFearGreedIndex.fulfilled, (state, action) => {
         state.status = "IDLE";
         state.value = action.payload;
+        state.today = action.payload[action.payload.length - 1];
       })
       .addCase(fetchFearGreedIndex.rejected, (state, action) => {
         state.status = "FAILED";
@@ -46,7 +48,7 @@ const fearGreedIndexSlice: Slice<GenericState<FearGreedIndex[]>, {}, "fearGreedI
   },
 });
 
-export const selectFearGreedIndex: (state: RootState) => GenericState<FearGreedIndex[]> = (state: RootState) =>
+export const selectFearGreedIndex: (state: RootState) => FearGreedIndexState = (state: RootState) =>
   state.fearGreedIndex;
 
 export default fearGreedIndexSlice.reducer;

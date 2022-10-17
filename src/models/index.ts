@@ -13,6 +13,7 @@ import {
   FearGreedIndex as FearGreedIndexInterface,
   FearGreedIndexMetadata as FearGreedIndexMetadataInterface,
   FearGreedIndexRootObject as FearGreedIndexRootObjectInterface,
+  FearGreedIndexState as FearGreedIndexStateInterface,
 } from "./api/fear-greed-index";
 import {
   GasOracle as GasOracleInterface,
@@ -44,6 +45,7 @@ export type MarketCapPercentage = MarketCapPercentageInterface;
 export type CoinMarketChartListState = CoinMarketChartListStateInterface;
 export type FearGreedIndex = FearGreedIndexInterface;
 export type FearGreedIndexMetadata = FearGreedIndexMetadataInterface;
+export type FearGreedIndexState = FearGreedIndexStateInterface;
 export type FearGreedIndexRootObject = FearGreedIndexRootObjectInterface;
 export type Page = PageInterface;
 export type RootModule = RootModuleInterface;
