@@ -3,9 +3,9 @@ import rateLimit from "axios-rate-limit";
 
 export const http = rateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 1500 });
 
-type ApiConfigFunction = (server: "coinGecko" | "etherscan" | "alternative.me" | "senticrypt") => AxiosRequestConfig;
+type ApiConfigFunction = (server: "coinGecko" | "etherscan" | "alternative.me" | "blockchain") => AxiosRequestConfig;
 
-export const API_CONFIG: ApiConfigFunction = (server: "coinGecko" | "etherscan" | "alternative.me" | "senticrypt") => {
+export const API_CONFIG: ApiConfigFunction = (server: "coinGecko" | "etherscan" | "alternative.me" | "blockchain") => {
   switch (server) {
     case "coinGecko":
       return {
@@ -33,9 +33,9 @@ export const API_CONFIG: ApiConfigFunction = (server: "coinGecko" | "etherscan" 
         responseType: "json",
         method: "GET",
       };
-    case "senticrypt":
+    case "blockchain":
       return {
-        baseURL: "http://api.senticrypt.com/v1",
+        baseURL: "https://api.blockchain.info",
         responseType: "json",
         method: "GET",
         headers: {

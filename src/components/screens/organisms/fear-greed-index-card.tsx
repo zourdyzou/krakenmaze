@@ -6,6 +6,7 @@ import { Skeleton } from "@material-ui/lab";
 
 import { HelpIconHeader } from "@/components/screens/atoms/HelpIconHeader";
 import { MappedSentimentIcon } from "@/components/screens/atoms/mapped-sentiment-icon";
+import { ShowBitcoinCorrelationSwitch } from "@/components/screens/atoms/show-bitcoin-correlation-switch";
 import { CardLayout } from "@/components/screens/molecules/card-layout";
 import { FearGreedIndexGaugeChart } from "@/components/screens/molecules/fear-greed-index-gaugeChart";
 import { HistoricFearGreedIndexChart } from "@/components/screens/molecules/history-fear-greed-chart";
@@ -82,6 +83,7 @@ export const FearGreedIndexCard: React.FunctionComponent = () => {
             {fearGreedIndex.value.length === 0 ? <FaceRounded /> : <MappedSentimentIcon />}
           </Avatar>
         }
+        action={<ShowBitcoinCorrelationSwitch />}
       />
       <CardContent className={classes.contentWrapper}>
         <FearGreedIndexGaugeChart />

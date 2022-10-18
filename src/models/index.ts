@@ -1,5 +1,6 @@
 import {
   AvailableDayRanges as AvailableDayRangesInterface,
+  AvailableIntervals as AvailableIntervalsInterface,
   CoinMarketChart as CoinMarketChartInterface,
   CoinMarketChartList as CoinMarketChartListInterface,
   CoinMarketChartListState as CoinMarketChartListStateInterface,
@@ -31,6 +32,7 @@ import { Page as PageInterface, RootModule as RootModuleInterface } from "./comm
 
 export type AppState = AppStateInterface;
 export type AvailableDayRanges = AvailableDayRangesInterface;
+export type AvailableIntervals = AvailableIntervalsInterface;
 export type DominanceChartList = DominanceChartListInterface;
 export type GenericState<T> = GenericStateInterface<T>;
 export type Coin = CoinInterface;
